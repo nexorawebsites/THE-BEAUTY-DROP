@@ -1,656 +1,760 @@
+```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="The Beauty Drop - Luxury Beauty Essentials in Lebanon.">
-<meta name="keywords" content="beauty Lebanon, skincare, makeup, luxury cosmetics">
-<title>THE BEAUTY DROP | Luxury Beauty — Lebanon</title>
+<meta name="description" content="The Beauty Drop — Luxury beauty essentials in Lebanon. Shop skincare, makeup & more.">
+<title>THE BEAUTY DROP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap');
+/* ============================================================
+   RESET & TOKENS
+============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #fff;
+  color: #1a1025;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body.ar { font-family: 'Noto Kufi Arabic', sans-serif; direction: rtl; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; border: none; cursor: pointer; background: none; }
+input, textarea { font-family: inherit; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #f8f4ff; }
+::-webkit-scrollbar-thumb { background: #c9a4ff; border-radius: 3px; }
 
-/* =====================================================
-   VARIABLES & RESET
-===================================================== */
+/* ============================================================
+   DESIGN TOKENS
+============================================================ */
 :root {
-  --white: #FFFFFF;
-  --cream: #FDF8FF;
-  --lav-soft: #F5EFFF;
-  --lav-mid: #EDE0FF;
-  --purple-light: #C9A4FF;
-  --purple-main: #9B6FD4;
-  --purple-dark: #7B4FBF;
-  --purple-deep: #5A3A8A;
-  --text-dark: #1C1130;
-  --text-mid: #4B3A6B;
-  --text-soft: #7A6A99;
-  --text-faint: #B0A0CC;
-  --grad-btn: linear-gradient(135deg,#C9A4FF 0%,#9B6FD4 55%,#7B4FBF 100%);
-  --grad-hero: linear-gradient(135deg,#F5EFFF 0%,#EDE0FF 40%,#F9F4FF 100%);
-  --shadow-sm: 0 4px 20px rgba(123,79,191,.10);
-  --shadow-md: 0 12px 44px rgba(123,79,191,.16);
-  --shadow-lg: 0 28px 70px rgba(123,79,191,.22);
-  --glass: rgba(255,255,255,.60);
-  --gborder: rgba(201,164,255,.28);
-  --r-sm: 12px; --r-md: 20px; --r-lg: 32px;
-  --serif: 'Playfair Display',Georgia,serif;
-  --sans: 'DM Sans',system-ui,sans-serif;
-  --arabic: 'Noto Kufi Arabic',sans-serif;
+  --ink: #1a1025;
+  --ink-2: #3d2b5a;
+  --ink-3: #7a6a99;
+  --ink-4: #b8a8d8;
+  --bg: #ffffff;
+  --bg-2: #faf7ff;
+  --bg-3: #f2ecff;
+  --line: rgba(201,164,255,0.2);
+  --purple: #9b6fd4;
+  --purple-l: #c9a4ff;
+  --purple-d: #7b4fbf;
+  --grad: linear-gradient(135deg, #c9a4ff, #9b6fd4, #7b4fbf);
+  --grad-soft: linear-gradient(135deg, #f5efff 0%, #ede0ff 100%);
+  --r: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --sh: 0 2px 20px rgba(123,79,191,0.08);
+  --sh-md: 0 8px 40px rgba(123,79,191,0.14);
+  --sh-lg: 0 20px 60px rgba(123,79,191,0.20);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--sans);background:var(--white);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body.ar{font-family:var(--arabic);direction:rtl}
-img{display:block;max-width:100%}
-a{text-decoration:none;color:inherit}
-ul{list-style:none}
-button{cursor:pointer;font-family:inherit;border:none;background:none}
-input{font-family:inherit}
 
-/* SCROLLBAR */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--lav-soft)}
-::-webkit-scrollbar-thumb{background:var(--grad-btn);border-radius:4px}
+/* ============================================================
+   UTILITIES
+============================================================ */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.container { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 96px 0; }
+.section-sm { padding: 72px 0; }
 
-/* =====================================================
+/* ============================================================
+   REVEAL ANIMATION
+============================================================ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-l { opacity: 0; transform: translateX(-28px); transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1); }
+.reveal-l.visible { opacity: 1; transform: translateX(0); }
+.reveal-r { opacity: 0; transform: translateX(28px); transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1); }
+.reveal-r.visible { opacity: 1; transform: translateX(0); }
+.delay-1 { transition-delay: 0.08s !important; }
+.delay-2 { transition-delay: 0.16s !important; }
+.delay-3 { transition-delay: 0.24s !important; }
+.delay-4 { transition-delay: 0.32s !important; }
+.delay-5 { transition-delay: 0.40s !important; }
+
+/* ============================================================
    LOADER
-===================================================== */
-#loader{
-  position:fixed;inset:0;z-index:9999;
-  background:var(--grad-hero);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;
-  transition:opacity .7s ease,visibility .7s ease;
+============================================================ */
+#loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg-2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-#loader.done{opacity:0;visibility:hidden;pointer-events:none}
-.ld-logo img{width:78px;height:78px;object-fit:cover;border-radius:16px;animation:ldPop 1.4s ease-in-out infinite}
-@keyframes ldPop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.ld-track{width:180px;height:3px;background:rgba(201,164,255,.25);border-radius:3px;overflow:hidden}
-.ld-fill{height:100%;background:var(--grad-btn);border-radius:3px;animation:ldFill 2.1s ease forwards}
-@keyframes ldFill{from{width:0}to{width:100%}}
+#loader.out { opacity: 0; visibility: hidden; }
+.loader-logo { animation: loaderPulse 1.6s ease-in-out infinite; }
+.loader-logo img { width: 72px; height: 72px; object-fit: cover; border-radius: 14px; }
+@keyframes loaderPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+.loader-bar { width: 160px; height: 2px; background: rgba(201,164,255,0.25); border-radius: 2px; overflow: hidden; }
+.loader-progress { height: 100%; background: var(--grad); animation: loaderFill 2.2s cubic-bezier(.4,0,.2,1) forwards; }
+@keyframes loaderFill { from{width:0} to{width:100%} }
+.loader-text { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-4); }
 
-/* =====================================================
-   CURSOR
-===================================================== */
-.c-dot,.c-ring{position:fixed;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);will-change:left,top}
-.c-dot{width:7px;height:7px;background:var(--purple-main)}
-.c-ring{width:34px;height:34px;border:1.5px solid rgba(155,111,212,.5);transition:width .3s,height .3s,background .3s,border-color .3s}
-.c-ring.grow{width:52px;height:52px;background:rgba(201,164,255,.09);border-color:var(--purple-light)}
-@media(hover:none){.c-dot,.c-ring{display:none}body{cursor:auto}}
-
-/* =====================================================
-   TOP BAR
-===================================================== */
-.topbar{
-  background:var(--purple-deep);padding:8px 60px;
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:12px;color:rgba(255,255,255,.85);letter-spacing:.5px;
-  overflow:hidden;
+/* ============================================================
+   TOP ANNOUNCEMENT
+============================================================ */
+.announce {
+  background: var(--ink);
+  color: rgba(255,255,255,0.82);
+  font-size: 11.5px;
+  letter-spacing: 0.6px;
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
 }
-.tb-marquee{flex:1;overflow:hidden}
-.tb-marquee span{display:inline-block;white-space:nowrap;padding-left:100%;animation:marquee 24s linear infinite}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-.tb-right{display:flex;align-items:center;gap:18px;flex-shrink:0}
-.tb-right a{color:rgba(255,255,255,.8);font-size:12px;transition:color .2s}
-.tb-right a:hover{color:var(--purple-light)}
+.announce-scroll { overflow: hidden; flex: 1; }
+.announce-scroll span {
+  display: inline-block;
+  white-space: nowrap;
+  animation: announceScroll 22s linear infinite;
+  padding-left: 100%;
+}
+@keyframes announceScroll { from{transform:translateX(0)} to{transform:translateX(-100%)} }
+.announce-right { flex-shrink: 0; display: flex; gap: 20px; align-items: center; }
+.announce-right a { color: rgba(255,255,255,0.7); font-size: 11px; transition: color 0.2s; }
+.announce-right a:hover { color: var(--purple-l); }
 
-/* =====================================================
+/* ============================================================
    NAVBAR
-===================================================== */
-nav{
-  position:sticky;top:0;z-index:900;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(201,164,255,.18);
-  transition:box-shadow .3s;
+============================================================ */
+.navbar {
+  position: sticky; top: 0; z-index: 800;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s;
 }
-nav.scrolled{box-shadow:0 4px 30px rgba(123,79,191,.10)}
-.nav-inner{
-  max-width:1380px;margin:0 auto;padding:0 40px;
-  height:74px;display:grid;grid-template-columns:auto 1fr auto;
-  align-items:center;gap:24px;
+.navbar.scrolled { box-shadow: 0 4px 24px rgba(123,79,191,0.09); }
+.nav-inner {
+  max-width: 1320px; margin: 0 auto; padding: 0 40px;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px;
 }
-.nav-logo img{height:48px;width:auto;object-fit:contain;border-radius:10px}
-.nav-menu{display:flex;align-items:center;justify-content:center;gap:32px}
-.nav-menu a{
-  font-size:12.5px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;
-  color:var(--text-mid);position:relative;padding-bottom:3px;transition:color .25s;
+.nav-logo { flex-shrink: 0; }
+.nav-logo img { height: 46px; width: auto; border-radius: 10px; object-fit: cover; }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-size: 12px; font-weight: 500; letter-spacing: 1.6px; text-transform: uppercase;
+  color: var(--ink-3); position: relative; padding-bottom: 2px; transition: color 0.25s;
 }
-.nav-menu a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--grad-btn);transition:width .3s}
-.nav-menu a:hover{color:var(--purple-main)}
-.nav-menu a:hover::after{width:100%}
-.nav-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px}
-.nav-icon{
-  width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  color:var(--text-mid);font-size:17px;transition:background .25s,color .25s;position:relative;
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--grad); transition: width 0.3s;
 }
-.nav-icon:hover{background:var(--lav-soft);color:var(--purple-main)}
-.cart-dot{
-  position:absolute;top:4px;right:4px;width:15px;height:15px;border-radius:50%;
-  background:var(--grad-btn);color:#fff;font-size:8px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.nav-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-3); transition: all 0.25s; position: relative;
 }
-.lang-wrap{display:flex;background:var(--lav-soft);border:1px solid rgba(201,164,255,.3);border-radius:30px;overflow:hidden}
-.lang-btn{padding:5px 13px;font-size:11px;font-weight:600;letter-spacing:.5px;color:var(--text-soft);transition:all .25s}
-.lang-btn.on{background:var(--grad-btn);color:#fff;border-radius:28px}
-.hamburger{display:none;flex-direction:column;gap:5px;padding:6px}
-.hamburger span{width:22px;height:1.5px;background:var(--text-mid);display:block;transition:all .3s;border-radius:2px}
+.nav-btn:hover { background: var(--bg-3); color: var(--ink); }
+.nav-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cart-count {
+  position: absolute; top: 4px; right: 4px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--grad); color: #fff;
+  font-size: 8px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+}
+.cart-count.bump { transform: scale(1.4); }
+.lang-pill {
+  display: flex; background: var(--bg-3);
+  border: 1px solid rgba(201,164,255,0.3); border-radius: 24px; overflow: hidden;
+}
+.lang-pill button {
+  padding: 5px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.4px;
+  color: var(--ink-4); transition: all 0.25s;
+}
+.lang-pill button.active { background: var(--grad); color: #fff; border-radius: 22px; }
+.hamburger { display: none; flex-direction: column; gap: 4.5px; padding: 8px; }
+.hamburger span { width: 20px; height: 1.5px; background: var(--ink-3); display: block; border-radius: 2px; transition: all 0.3s; }
 
-/* =====================================================
+/* ============================================================
    MOBILE MENU
-===================================================== */
-.mob-menu{
-  position:fixed;inset:0;z-index:899;
-  background:rgba(255,255,255,.97);backdrop-filter:blur(24px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;
-  transform:translateX(-110%);transition:transform .45s cubic-bezier(.77,0,.18,1);
+============================================================ */
+.mob-nav {
+  position: fixed; inset: 0; z-index: 799;
+  background: rgba(255,255,255,0.98); backdrop-filter: blur(30px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  transform: translateY(-110%); transition: transform 0.45s cubic-bezier(.77,0,.18,1);
 }
-.mob-menu.open{transform:translateX(0)}
-.mob-menu a{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--text-dark);transition:color .25s}
-.mob-menu a:hover{color:var(--purple-main)}
-.mob-close{
-  position:absolute;top:24px;right:28px;font-size:26px;color:var(--text-soft);
-  background:none;border:none;line-height:1;
-}
+.mob-nav.open { transform: translateY(0); }
+.mob-nav a { font-family: var(--serif); font-size: 32px; color: var(--ink); font-weight: 500; transition: color 0.25s; }
+.mob-nav a:hover { color: var(--purple); }
+.mob-nav-close { position: absolute; top: 24px; right: 28px; font-size: 24px; color: var(--ink-3); }
 
-/* =====================================================
+/* ============================================================
+   CART DRAWER
+============================================================ */
+.cart-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(26,16,37,0.45);
+  backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s;
+}
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 1001;
+  width: 420px; max-width: 95vw;
+  background: var(--bg);
+  box-shadow: -20px 0 60px rgba(123,79,191,0.15);
+  transform: translateX(110%);
+  transition: transform 0.45s cubic-bezier(.77,0,.18,1);
+  display: flex; flex-direction: column;
+}
+.cart-drawer.open { transform: translateX(0); }
+body.ar .cart-drawer { right: auto; left: 0; transform: translateX(-110%); box-shadow: 20px 0 60px rgba(123,79,191,0.15); }
+body.ar .cart-drawer.open { transform: translateX(0); }
+.cart-head {
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cart-head h2 { font-family: var(--serif); font-size: 22px; font-weight: 500; }
+.cart-head-sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+.cart-close { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-2); display: flex; align-items: center; justify-content: center; color: var(--ink-3); font-size: 18px; transition: all 0.25s; }
+.cart-close:hover { background: var(--bg-3); color: var(--ink); }
+.cart-body { flex: 1; overflow-y: auto; padding: 20px 28px; }
+.cart-body::-webkit-scrollbar { width: 3px; }
+.cart-body::-webkit-scrollbar-thumb { background: var(--purple-l); border-radius: 3px; }
+.cart-empty {
+  height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; text-align: center; color: var(--ink-3); padding: 40px 0;
+}
+.cart-empty-icon { font-size: 56px; opacity: 0.4; }
+.cart-empty h3 { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--ink); }
+.cart-empty p { font-size: 14px; line-height: 1.7; max-width: 220px; }
+.cart-item {
+  display: grid; grid-template-columns: 72px 1fr auto;
+  gap: 14px; align-items: center;
+  padding: 16px 0; border-bottom: 1px solid var(--line);
+  animation: cartItemIn 0.35s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes cartItemIn { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:translateX(0)} }
+.cart-item-img { width: 72px; height: 88px; border-radius: 12px; overflow: hidden; background: var(--bg-3); flex-shrink: 0; }
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.4; }
+.cart-item-variant { font-size: 11.5px; color: var(--ink-4); margin-bottom: 10px; }
+.cart-item-price { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--purple); }
+.qty-ctrl { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line);
+  background: var(--bg-2); display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--ink-3); transition: all 0.2s;
+}
+.qty-btn:hover { border-color: var(--purple-l); background: var(--bg-3); color: var(--ink); }
+.qty-num { font-size: 13px; font-weight: 600; color: var(--ink); min-width: 20px; text-align: center; }
+.cart-item-remove { color: var(--ink-4); font-size: 18px; transition: color 0.2s; padding: 4px; align-self: flex-start; }
+.cart-item-remove:hover { color: #e05; }
+.cart-foot {
+  padding: 20px 28px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.cart-summary { margin-bottom: 18px; }
+.cart-row { display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; color: var(--ink-3); margin-bottom: 8px; }
+.cart-row.total { font-size: 18px; font-weight: 600; color: var(--ink); font-family: var(--serif); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+.cart-row.total span:last-child { color: var(--purple); }
+.btn-checkout {
+  width: 100%; padding: 16px;
+  background: var(--grad); color: #fff;
+  border-radius: 50px; border: none;
+  font-size: 13px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+  box-shadow: 0 8px 30px rgba(123,79,191,0.38);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(123,79,191,0.48); }
+.btn-checkout svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+.cart-secure { text-align: center; font-size: 11px; color: var(--ink-4); margin-top: 12px; }
+
+/* ============================================================
    HERO
-===================================================== */
-.hero{min-height:100vh;position:relative;overflow:hidden;background:var(--grad-hero);display:flex;align-items:center}
-.hero-orbs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(70px);animation:orbDrift 9s ease-in-out infinite alternate}
-.orb-a{width:500px;height:500px;background:radial-gradient(circle,rgba(201,164,255,.28),transparent 70%);top:-120px;right:-80px;animation-duration:11s}
-.orb-b{width:360px;height:360px;background:radial-gradient(circle,rgba(155,111,212,.18),transparent 70%);bottom:-80px;left:60px;animation-duration:8s;animation-delay:-3s}
-.orb-c{width:260px;height:260px;background:radial-gradient(circle,rgba(243,238,255,.9),transparent 70%);top:45%;left:38%;animation-duration:10s;animation-delay:-5s}
-@keyframes orbDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(24px,24px) scale(1.08)}}
-.petal-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.petal{position:absolute;font-size:18px;opacity:.4;animation:petalFall linear infinite;pointer-events:none}
-@keyframes petalFall{0%{transform:translateY(-60px) rotate(0deg);opacity:.4}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+============================================================ */
+.hero {
+  min-height: calc(100vh - 112px);
+  background: var(--grad-soft);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+.hero-blobs { position: absolute; inset: 0; pointer-events: none; }
+.blob {
+  position: absolute; border-radius: 50%; filter: blur(80px);
+  animation: blobFloat ease-in-out infinite alternate;
+}
+.blob-a { width: 520px; height: 520px; background: rgba(201,164,255,0.22); top: -140px; right: -100px; animation-duration: 11s; }
+.blob-b { width: 380px; height: 380px; background: rgba(155,111,212,0.16); bottom: -100px; left: 40px; animation-duration: 8s; animation-delay: -3s; }
+.blob-c { width: 280px; height: 280px; background: rgba(243,238,255,0.7); top: 40%; left: 35%; animation-duration: 10s; animation-delay: -6s; }
+@keyframes blobFloat { from{transform:translate(0,0) scale(1)} to{transform:translate(20px,20px) scale(1.06)} }
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 60px;
+  max-width: 1320px; margin: 0 auto; padding: 80px 40px;
+  position: relative; z-index: 2; width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 24px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--purple-l); }
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(52px, 6vw, 90px);
+  font-weight: 300; line-height: 1.04;
+  color: var(--ink); letter-spacing: -1.5px; margin-bottom: 8px;
+}
+.hero-h1 strong {
+  display: block; font-weight: 600;
+  font-size: clamp(62px, 7vw, 108px);
+  letter-spacing: -3px;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-h1 em { font-style: italic; font-weight: 300; color: var(--purple); -webkit-text-fill-color: var(--purple); }
+.hero-sub {
+  font-size: 15.5px; font-weight: 300; line-height: 1.8;
+  color: var(--ink-3); max-width: 400px; margin: 24px 0 40px; letter-spacing: 0.1px;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 36px; border-radius: 50px;
+  background: var(--grad); color: #fff; font-size: 12.5px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+  box-shadow: 0 8px 30px rgba(123,79,191,0.38);
+  transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden;
+}
+.btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent); opacity: 0; transition: opacity 0.3s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(123,79,191,0.48); }
+.btn-primary:hover::after { opacity: 1; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 36px; border-radius: 50px;
+  border: 1.5px solid rgba(155,111,212,0.35); color: var(--purple);
+  font-size: 12.5px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+  transition: all 0.3s; backdrop-filter: blur(8px);
+}
+.btn-ghost:hover { background: rgba(201,164,255,0.1); border-color: var(--purple-l); transform: translateY(-2px); }
+.hero-stats { display: flex; gap: 32px; margin-top: 48px; }
+.stat-item {}
+.stat-num { font-family: var(--serif); font-size: 32px; font-weight: 600; color: var(--ink); }
+.stat-label { font-size: 11.5px; color: var(--ink-3); letter-spacing: 0.5px; margin-top: 2px; }
 
-.hero-inner{
-  position:relative;z-index:2;
-  max-width:1380px;margin:0 auto;padding:90px 60px 60px;
-  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;width:100%;
+/* Hero Visual */
+.hero-visual {
+  position: relative; height: 580px;
+  display: flex; align-items: center; justify-content: center;
 }
-.hero-text{animation:slideUp 1s cubic-bezier(.16,1,.3,1) both}
-@keyframes slideUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
-  color:var(--purple-main);margin-bottom:22px;
+.hero-glow { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(201,164,255,0.28), transparent 70%); filter: blur(24px); animation: glowBreath 5s ease-in-out infinite; }
+@keyframes glowBreath { 0%,100%{transform:scale(1);opacity:0.7} 50%{transform:scale(1.1);opacity:1} }
+.hero-main-img {
+  position: relative; z-index: 3;
+  width: 275px; height: 375px; border-radius: 28px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(123,79,191,0.28), 0 0 0 1px rgba(255,255,255,0.7);
+  animation: imgFloat 7s ease-in-out infinite;
 }
-.hero-tag::before,.hero-tag::after{content:'';width:26px;height:1px;background:var(--purple-light)}
-.hero-h1{
-  font-family:var(--serif);font-size:clamp(44px,5.5vw,80px);
-  font-weight:400;line-height:1.06;color:var(--text-dark);letter-spacing:-1px;margin-bottom:6px;
+@keyframes imgFloat { 0%,100%{transform:translateY(0) rotate(-1.5deg)} 50%{transform:translateY(-18px) rotate(1.5deg)} }
+.hero-main-img img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s, transform 0.5s; }
+.hero-pill {
+  position: absolute; z-index: 4;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,164,255,0.3); border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 30px rgba(123,79,191,0.12);
 }
-.hero-h1 .drop{
-  display:block;font-weight:700;
-  font-size:clamp(52px,6.5vw,96px);letter-spacing:-3px;
-  background:var(--grad-btn);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-h1 em{font-style:italic;font-weight:400;color:var(--purple-main);-webkit-text-fill-color:var(--purple-main)}
-.hero-sub{
-  font-size:15px;font-weight:300;line-height:1.85;
-  color:var(--text-soft);max-width:420px;margin:22px 0 38px;letter-spacing:.2px;
-}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-fill{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:15px 34px;border-radius:50px;
-  background:var(--grad-btn);color:#fff;
-  font-size:12.5px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;
-  box-shadow:0 8px 28px rgba(123,79,191,.38);
-  transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;
-}
-.btn-fill::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.18),transparent);opacity:0;transition:opacity .3s}
-.btn-fill:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(123,79,191,.48)}
-.btn-fill:hover::before{opacity:1}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:15px 34px;border-radius:50px;
-  border:1.5px solid rgba(155,111,212,.4);color:var(--purple-main);
-  font-size:12.5px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;
-  backdrop-filter:blur(8px);transition:all .3s;
-}
-.btn-outline:hover{background:rgba(201,164,255,.12);border-color:var(--purple-light);transform:translateY(-3px)}
+.pill-1 { top: 70px; left: 0; animation: pillFloat1 6s ease-in-out infinite; }
+.pill-2 { bottom: 90px; right: -20px; animation: pillFloat2 7s ease-in-out infinite; animation-delay: -2s; }
+@keyframes pillFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes pillFloat2 { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-10px) rotate(1deg)} }
+.pill-label { font-size: 9.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ink-4); font-weight: 600; }
+.pill-val { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); margin-top: 2px; }
+.pill-stars { color: var(--purple-l); font-size: 11px; margin-top: 2px; }
+.hero-thumbs { position: absolute; bottom: 20px; left: -40px; z-index: 4; display: flex; gap: 10px; animation: pillFloat2 6s ease-in-out infinite; animation-delay: -4s; }
+.hero-thumb { width: 52px; height: 68px; border-radius: 12px; overflow: hidden; border: 2.5px solid rgba(255,255,255,0.9); box-shadow: 0 6px 20px rgba(123,79,191,0.16); }
+.hero-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-/* HERO VISUAL */
-.hero-visual{
-  position:relative;height:560px;
-  display:flex;align-items:center;justify-content:center;
-  animation:slideUp 1.2s .15s cubic-bezier(.16,1,.3,1) both;
-}
-.glow-ring{
-  position:absolute;width:400px;height:400px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,164,255,.28) 0%,transparent 70%);
-  animation:glowPulse 4.5s ease-in-out infinite;filter:blur(18px);
-}
-@keyframes glowPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.12);opacity:1}}
-.hero-card{
-  position:relative;z-index:3;
-  width:270px;height:370px;border-radius:28px;overflow:hidden;
-  box-shadow:0 28px 80px rgba(123,79,191,.28),0 0 0 1px rgba(255,255,255,.6);
-  animation:heroFloat 7s ease-in-out infinite;
-}
-@keyframes heroFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-18px) rotate(2deg)}}
-.hero-card img{width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .5s}
-.fc{
-  position:absolute;z-index:4;
-  background:rgba(255,255,255,.88);backdrop-filter:blur(18px);
-  border:1px solid rgba(201,164,255,.32);border-radius:18px;
-  padding:11px 15px;box-shadow:0 8px 30px rgba(123,79,191,.13);
-}
-.fc-1{top:55px;left:-10px;animation:fcF1 6s ease-in-out infinite}
-.fc-2{bottom:75px;right:-25px;animation:fcF2 7s ease-in-out infinite;animation-delay:-2s}
-@keyframes fcF1{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-12px)}}
-@keyframes fcF2{0%,100%{transform:translate(0,0) rotate(-1deg)}50%{transform:translate(-5px,-10px) rotate(1deg)}}
-.fc-label{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);font-weight:600}
-.fc-val{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--text-dark);margin-top:3px}
-.fc-stars{color:var(--purple-light);font-size:11px;margin-top:2px}
-.thumb-strip{
-  position:absolute;bottom:20px;left:-50px;z-index:4;
-  display:flex;gap:10px;animation:fcF2 6s ease-in-out infinite;animation-delay:-4s;
-}
-.thumb{width:54px;height:72px;border-radius:14px;overflow:hidden;border:2.5px solid rgba(255,255,255,.85);box-shadow:0 6px 20px rgba(123,79,191,.18)}
-.thumb img{width:100%;height:100%;object-fit:cover}
-
-/* =====================================================
+/* ============================================================
    TRUST BAR
-===================================================== */
-.trust-bar{
-  background:var(--white);
-  border-top:1px solid rgba(201,164,255,.18);
-  border-bottom:1px solid rgba(201,164,255,.18);
-  padding:22px 60px;
+============================================================ */
+.trust-bar { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); padding: 0 40px; }
+.trust-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: stretch; }
+.trust-item {
+  display: flex; align-items: center; gap: 12px;
+  flex: 1; padding: 22px 0; font-size: 13px; font-weight: 400; color: var(--ink-2);
+  border-right: 1px solid var(--line); padding-left: 28px;
 }
-.trust-inner{
-  max-width:960px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
-}
-.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:var(--text-mid)}
-.trust-icon{font-size:22px}
-.trust-sep{width:1px;height:30px;background:rgba(201,164,255,.3)}
+.trust-item:first-child { padding-left: 0; }
+.trust-item:last-child { border-right: none; }
+.trust-item-icon { font-size: 20px; flex-shrink: 0; }
 
-/* =====================================================
-   SECTION HELPERS
-===================================================== */
-.sec{padding:96px 60px}
-.sec-alt{background:var(--lav-soft)}
-.sec-white{background:var(--white)}
-.sec-head{text-align:center;margin-bottom:60px}
-.sec-eye{
-  display:inline-flex;align-items:center;gap:12px;
-  font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
-  color:var(--purple-main);margin-bottom:14px;
+/* ============================================================
+   SECTION HEAD
+============================================================ */
+.section-head { text-align: center; margin-bottom: 64px; }
+.section-eye {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 14px;
 }
-.sec-eye::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--purple-light))}
-.sec-eye::after{content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--purple-light),transparent)}
-.sec-title{font-family:var(--serif);font-size:clamp(32px,3.8vw,54px);font-weight:400;color:var(--text-dark);line-height:1.1;letter-spacing:-.3px}
-.sec-title em{font-style:italic;color:var(--purple-main)}
-.sec-sub{font-size:15px;font-weight:300;color:var(--text-soft);line-height:1.75;margin-top:12px;max-width:480px;margin-left:auto;margin-right:auto}
+.section-eye::before { content: ''; width: 32px; height: 1px; background: linear-gradient(90deg, transparent, var(--purple-l)); }
+.section-eye::after { content: ''; width: 32px; height: 1px; background: linear-gradient(90deg, var(--purple-l), transparent); }
+.section-title { font-family: var(--serif); font-size: clamp(34px, 3.5vw, 52px); font-weight: 300; color: var(--ink); line-height: 1.1; letter-spacing: -0.3px; }
+.section-title em { font-style: italic; color: var(--purple); }
+.section-sub { font-size: 15px; font-weight: 300; color: var(--ink-3); line-height: 1.75; margin-top: 12px; max-width: 460px; margin-left: auto; margin-right: auto; }
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
-.reveal.in{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+/* ============================================================
+   PRODUCT GRID
+============================================================ */
+.products-section { background: var(--bg-2); }
+.filters { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 48px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 9px 22px; border-radius: 30px;
+  border: 1.5px solid var(--line); background: var(--bg);
+  font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+  color: var(--ink-3); transition: all 0.25s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--grad); color: #fff; border-color: transparent;
+  box-shadow: 0 4px 16px rgba(123,79,191,0.28);
+}
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+.product-card {
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg);
+  overflow: hidden; transition: transform 0.45s cubic-bezier(.16,1,.3,1), box-shadow 0.45s;
+  position: relative;
+}
+.product-card:hover { transform: translateY(-10px); box-shadow: var(--sh-md); }
+.card-img-wrap { position: relative; height: 260px; overflow: hidden; background: var(--bg-3); }
+.card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s cubic-bezier(.16,1,.3,1); }
+.product-card:hover .card-img-wrap img { transform: scale(1.07); }
+.card-badge {
+  position: absolute; top: 14px; left: 14px;
+  padding: 4px 12px; border-radius: 20px;
+  background: var(--grad); color: #fff;
+  font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  z-index: 2;
+}
+.card-wishlist {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--ink-3); border: none;
+  transition: all 0.25s;
+}
+.card-wishlist:hover { background: #fff; color: #e05; transform: scale(1.1); }
+.card-wishlist.on { color: #e05; }
+.card-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(123,79,191,0.12), transparent);
+  opacity: 0; transition: opacity 0.4s;
+}
+.product-card:hover .card-img-overlay { opacity: 1; }
+.card-body { padding: 20px 20px 24px; }
+.card-stars { display: flex; align-items: center; gap: 3px; margin-bottom: 8px; }
+.card-stars span { color: var(--purple-l); font-size: 11px; }
+.card-stars .count { color: var(--ink-4); font-size: 10.5px; margin-left: 4px; }
+.card-name { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); line-height: 1.3; margin-bottom: 5px; }
+.card-desc { font-size: 12.5px; color: var(--ink-3); line-height: 1.65; font-weight: 300; margin-bottom: 18px; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.card-price { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--purple); }
+.card-price s { font-size: 13px; color: var(--ink-4); font-family: var(--sans); font-weight: 300; margin-left: 4px; }
+.btn-add-cart {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 18px; border-radius: 28px;
+  background: var(--grad); color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 18px rgba(123,79,191,0.3);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.btn-add-cart:hover { transform: scale(1.05); box-shadow: 0 8px 26px rgba(123,79,191,0.45); }
+.btn-add-cart svg { width: 13px; height: 13px; fill: #fff; flex-shrink: 0; }
 
-/* =====================================================
-   FEATURES
-===================================================== */
-.feat-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.feat-card{
-  text-align:center;padding:42px 28px;
-  background:var(--white);border:1px solid rgba(201,164,255,.22);
-  border-radius:var(--r-md);box-shadow:var(--shadow-sm);
-  transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s;
-  position:relative;overflow:hidden;
-}
-.feat-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(201,164,255,.1),transparent 60%);opacity:0;transition:opacity .4s}
-.feat-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-md)}
-.feat-card:hover::before{opacity:1}
-.feat-icon{
-  width:74px;height:74px;border-radius:50%;margin:0 auto 22px;
-  background:linear-gradient(135deg,var(--lav-soft),var(--lav-mid));
-  border:1px solid rgba(201,164,255,.28);
-  display:flex;align-items:center;justify-content:center;font-size:30px;
-  transition:transform .4s;
-}
-.feat-card:hover .feat-icon{transform:scale(1.1) rotate(6deg)}
-.feat-card h3{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--text-dark);margin-bottom:8px}
-.feat-card p{font-size:13px;color:var(--text-soft);line-height:1.7;font-weight:300}
-
-/* =====================================================
-   PRODUCTS
-===================================================== */
-.prod-grid{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
-.prod-card{
-  background:var(--white);border:1px solid rgba(201,164,255,.2);
-  border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm);
-  transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s;
-  position:relative;
-}
-.prod-card:hover{transform:translateY(-14px);box-shadow:var(--shadow-lg)}
-.prod-img{position:relative;height:230px;overflow:hidden;background:var(--lav-soft)}
-.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.16,1,.3,1)}
-.prod-card:hover .prod-img img{transform:scale(1.1)}
-.prod-badge{
-  position:absolute;top:12px;left:12px;
-  background:var(--grad-btn);color:#fff;
-  font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 11px;border-radius:20px;z-index:2;
-}
-.prod-wish{
-  position:absolute;top:11px;right:11px;z-index:2;
-  width:34px;height:34px;border-radius:50%;
-  background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
-  display:flex;align-items:center;justify-content:center;
-  font-size:15px;color:var(--text-soft);border:none;cursor:pointer;
-  transition:all .25s;
-}
-.prod-wish:hover{background:#fff;color:#ff6b8a;transform:scale(1.12)}
-.prod-wish.on{color:#ff6b8a}
-.prod-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(91,55,143,.14),transparent);opacity:0;transition:opacity .4s}
-.prod-card:hover .prod-ov{opacity:1}
-.prod-body{padding:18px 18px 22px}
-.prod-stars{display:flex;align-items:center;gap:3px;margin-bottom:7px}
-.star{color:var(--purple-light);font-size:11.5px}
-.prod-cnt{font-size:10.5px;color:var(--text-faint);margin-left:4px}
-.prod-name{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text-dark);line-height:1.3;margin-bottom:5px}
-.prod-desc{font-size:12px;color:var(--text-soft);line-height:1.6;font-weight:300;margin-bottom:14px}
-.prod-foot{display:flex;align-items:center;justify-content:space-between}
-.prod-price{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--purple-main)}
-.prod-price s{font-size:13px;color:var(--text-faint);font-family:var(--sans);font-weight:300;margin-left:5px}
-.btn-buy{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:9px 16px;border-radius:28px;
-  background:var(--grad-btn);color:#fff;border:none;cursor:pointer;
-  font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  box-shadow:0 4px 16px rgba(123,79,191,.32);
-  transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;
-}
-.btn-buy:hover{transform:scale(1.06);box-shadow:0 8px 26px rgba(123,79,191,.48)}
-
-/* =====================================================
+/* ============================================================
    COLLECTIONS
-===================================================== */
-.coll-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
-.coll-card{
-  border-radius:var(--r-md);overflow:hidden;position:relative;height:270px;cursor:pointer;
-  box-shadow:var(--shadow-sm);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s;
+============================================================ */
+.coll-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.coll-card {
+  border-radius: var(--r-lg); overflow: hidden; position: relative;
+  height: 280px; cursor: pointer;
+  box-shadow: var(--sh); transition: transform 0.45s cubic-bezier(.16,1,.3,1), box-shadow 0.45s;
 }
-.coll-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md)}
-.coll-bg{position:absolute;inset:0;transition:transform .55s cubic-bezier(.16,1,.3,1)}
-.coll-card:hover .coll-bg{transform:scale(1.07)}
-.cc1 .coll-bg{background:linear-gradient(145deg,#F3EEFF,#E2D1FF)}
-.cc2 .coll-bg{background:linear-gradient(145deg,#FFEEEE,#FFD5E5)}
-.cc3 .coll-bg{background:linear-gradient(145deg,#EEF3FF,#D5E2FF)}
-.cc4 .coll-bg{background:linear-gradient(145deg,#EEFFF5,#D5FFE8)}
-.cc5 .coll-bg{background:linear-gradient(145deg,#FFF8EE,#FFE8D5)}
-.coll-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-68%);font-size:58px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.08));transition:transform .4s}
-.coll-card:hover .coll-emoji{transform:translate(-50%,-78%) scale(1.1) rotate(5deg)}
-.coll-info{position:absolute;bottom:0;left:0;right:0;padding:18px;background:linear-gradient(to top,rgba(255,255,255,.96),transparent);text-align:center}
-.coll-info h3{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text-dark)}
-.coll-info p{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple-main);margin-top:3px;font-weight:600}
+.coll-card:hover { transform: translateY(-8px); box-shadow: var(--sh-md); }
+.coll-bg { position: absolute; inset: 0; transition: transform 0.55s cubic-bezier(.16,1,.3,1); }
+.coll-card:hover .coll-bg { transform: scale(1.06); }
+.c-1 .coll-bg { background: linear-gradient(145deg, #f0e8ff, #dfd0ff); }
+.c-2 .coll-bg { background: linear-gradient(145deg, #ffe8f5, #ffd0ea); }
+.c-3 .coll-bg { background: linear-gradient(145deg, #e8f0ff, #d0dfff); }
+.c-4 .coll-bg { background: linear-gradient(145deg, #e8fff4, #d0ffe8); }
+.c-5 .coll-bg { background: linear-gradient(145deg, #fff8e8, #ffe8d0); }
+.coll-emoji { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -72%); font-size: 54px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.07)); transition: transform 0.4s; }
+.coll-card:hover .coll-emoji { transform: translate(-50%, -80%) scale(1.12) rotate(6deg); }
+.coll-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px 18px; background: linear-gradient(to top, rgba(255,255,255,0.98), transparent); text-align: center; }
+.coll-info h3 { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); }
+.coll-info p { font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple); margin-top: 3px; font-weight: 600; }
 
-/* =====================================================
-   PROMO
-===================================================== */
-.promo{background:linear-gradient(135deg,#2B1760 0%,#4A2D8E 45%,#6843A8 100%);padding:96px 60px;position:relative;overflow:hidden}
-.promo::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(201,164,255,.06) 1px,transparent 1px);background-size:40px 40px}
-.pb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
-.pb-a{width:400px;height:400px;background:rgba(201,164,255,.13);top:-100px;right:-60px;animation:orbDrift 10s ease-in-out infinite alternate}
-.pb-b{width:280px;height:280px;background:rgba(123,79,191,.18);bottom:-80px;left:180px;animation:orbDrift 7s ease-in-out infinite alternate;animation-delay:-4s}
-.promo-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px}
-.promo-text .sec-eye{color:rgba(201,164,255,.8)}
-.promo-text .sec-eye::before{background:linear-gradient(90deg,transparent,rgba(201,164,255,.5))}
-.promo-text .sec-eye::after{background:linear-gradient(90deg,rgba(201,164,255,.5),transparent)}
-.promo-title{font-family:var(--serif);font-size:clamp(34px,4vw,56px);font-weight:400;color:#fff;line-height:1.1;margin-bottom:18px}
-.promo-title em{font-style:italic;color:var(--purple-light)}
-.promo-sub{font-size:15px;color:rgba(255,255,255,.68);line-height:1.8;font-weight:300;margin-bottom:34px}
-.promo-row{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:15px 36px;border-radius:50px;
-  border:1.5px solid rgba(255,255,255,.32);color:#fff;
-  font-size:12.5px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;
-  backdrop-filter:blur(14px);background:rgba(255,255,255,.1);
-  transition:all .3s;
+/* ============================================================
+   PROMO DARK
+============================================================ */
+.promo-dark {
+  background: linear-gradient(135deg, #1e0d40 0%, #3d2080 45%, #5c35a8 100%);
+  padding: 100px 40px; position: relative; overflow: hidden;
 }
-.btn-ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-3px);box-shadow:0 14px 38px rgba(0,0,0,.2)}
-.promo-disc{color:#fff}
-.promo-disc big{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--purple-light);display:block}
-.promo-disc small{font-size:12px;opacity:.65}
-.promo-vis{display:flex;align-items:center;justify-content:center;gap:16px}
-.promo-main{width:175px;height:270px;border-radius:20px;overflow:hidden;box-shadow:0 20px 55px rgba(0,0,0,.32);animation:heroFloat 7s ease-in-out infinite}
-.promo-main img{width:100%;height:100%;object-fit:cover}
-.promo-side{width:125px;height:195px;border-radius:16px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.25);animation:heroFloat 9s ease-in-out infinite;animation-delay:-3s}
-.promo-side img{width:100%;height:100%;object-fit:cover}
+.promo-dark::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(201,164,255,0.06) 1px, transparent 1px); background-size: 42px 42px; }
+.promo-blob { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
+.promo-blob-a { width: 420px; height: 420px; background: rgba(201,164,255,0.12); top: -120px; right: -60px; animation: blobFloat 11s ease-in-out infinite alternate; }
+.promo-blob-b { width: 300px; height: 300px; background: rgba(123,79,191,0.16); bottom: -80px; left: 200px; animation: blobFloat 7s ease-in-out infinite alternate; animation-delay: -4s; }
+.promo-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; }
+.promo-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,164,255,0.8); margin-bottom: 20px; }
+.promo-eyebrow::before, .promo-eyebrow::after { content: ''; width: 24px; height: 1px; background: rgba(201,164,255,0.4); }
+.promo-h2 { font-family: var(--serif); font-size: clamp(36px, 4vw, 58px); font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 18px; }
+.promo-h2 em { font-style: italic; color: var(--purple-l); }
+.promo-p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.8; font-weight: 300; margin-bottom: 36px; }
+.promo-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 36px; border-radius: 50px;
+  border: 1.5px solid rgba(255,255,255,0.3); color: #fff;
+  font-size: 12.5px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+  backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+.btn-white:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,0.2); }
+.promo-discount { color: #fff; }
+.promo-discount big { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--purple-l); display: block; }
+.promo-discount small { font-size: 12px; opacity: 0.6; }
+.promo-visual { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.promo-img-main { width: 180px; height: 280px; border-radius: 22px; overflow: hidden; box-shadow: 0 22px 60px rgba(0,0,0,0.35); animation: imgFloat 7s ease-in-out infinite; }
+.promo-img-main img { width: 100%; height: 100%; object-fit: cover; }
+.promo-img-side { width: 128px; height: 200px; border-radius: 18px; overflow: hidden; box-shadow: 0 16px 44px rgba(0,0,0,0.28); animation: imgFloat 9s ease-in-out infinite; animation-delay: -3s; }
+.promo-img-side img { width: 100%; height: 100%; object-fit: cover; }
 
-/* =====================================================
+/* ============================================================
    REVIEWS
-===================================================== */
-.rev-wrap{max-width:1240px;margin:0 auto}
-.rev-outer{overflow:hidden}
-.rev-track{display:flex;gap:26px;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.rev-card{
-  flex:0 0 calc(33.333% - 18px);
-  background:var(--white);border:1px solid rgba(201,164,255,.2);
-  border-radius:var(--r-md);padding:34px 30px;
-  box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
-  transition:transform .4s,box-shadow .4s;
+============================================================ */
+.reviews-section { background: var(--bg-2); }
+.reviews-slider-wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+.reviews-track-outer { overflow: hidden; }
+.reviews-track { display: flex; gap: 24px; transition: transform 0.6s cubic-bezier(.16,1,.3,1); }
+.review-card {
+  flex: 0 0 calc(33.333% - 16px);
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 34px 30px; position: relative; overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
 }
-.rev-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md)}
-.rev-card::before{content:'\201C';position:absolute;top:-8px;right:16px;font-size:110px;font-family:var(--serif);color:rgba(201,164,255,.12);line-height:1;pointer-events:none}
-.rev-stars{margin-bottom:14px}
-.rev-stars span{color:var(--purple-light);font-size:15px}
-.rev-text{font-size:14px;line-height:1.82;color:var(--text-mid);font-weight:300;font-style:italic;margin-bottom:22px}
-.rev-auth{display:flex;align-items:center;gap:13px}
-.rev-ava{width:44px;height:44px;border-radius:50%;background:var(--lav-mid);border:2px solid rgba(201,164,255,.3);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.rev-auth strong{display:block;font-size:14px;font-weight:600;color:var(--text-dark);font-family:var(--serif)}
-.rev-auth span{font-size:11px;color:var(--purple-main);letter-spacing:1px;text-transform:uppercase}
-.rev-ctrl{display:flex;justify-content:center;gap:14px;margin-top:36px}
-.rev-btn{
-  width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(201,164,255,.4);
-  background:rgba(255,255,255,.75);backdrop-filter:blur(8px);
-  font-size:15px;color:var(--purple-main);display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .3s;
+.review-card:hover { transform: translateY(-6px); box-shadow: var(--sh-md); }
+.review-card::before { content: '\201C'; position: absolute; top: -6px; right: 18px; font-size: 100px; font-family: var(--serif); color: rgba(201,164,255,0.12); line-height: 1; pointer-events: none; }
+.review-stars { margin-bottom: 14px; }
+.review-stars span { color: var(--purple-l); font-size: 14px; }
+.review-text { font-size: 14px; line-height: 1.82; color: var(--ink-2); font-weight: 300; font-style: italic; margin-bottom: 24px; }
+.review-author { display: flex; align-items: center; gap: 13px; }
+.review-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--bg-3); border: 2px solid rgba(201,164,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.review-author strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); font-family: var(--serif); }
+.review-author span { font-size: 11px; color: var(--purple); letter-spacing: 0.8px; text-transform: uppercase; }
+.reviews-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 40px; }
+.rev-ctrl-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1.5px solid var(--line); background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--purple); cursor: pointer;
+  transition: all 0.25s;
 }
-.rev-btn:hover{background:var(--grad-btn);color:#fff;border-color:transparent;box-shadow:0 5px 18px rgba(123,79,191,.35)}
-.rev-dots{display:flex;justify-content:center;gap:7px;margin-top:18px}
-.rev-dot{width:8px;height:8px;border-radius:50%;background:rgba(201,164,255,.35);border:none;cursor:pointer;transition:all .3s}
-.rev-dot.on{width:22px;border-radius:4px;background:var(--purple-main)}
+.rev-ctrl-btn:hover { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 5px 18px rgba(123,79,191,0.35); }
+.reviews-dots { display: flex; gap: 7px; }
+.rev-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(201,164,255,0.35); border: none; cursor: pointer; transition: all 0.3s; }
+.rev-dot.on { width: 22px; border-radius: 4px; background: var(--purple); }
 
-/* =====================================================
-   INSTAGRAM
-===================================================== */
-.ig-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-.ig-item{aspect-ratio:1;border-radius:var(--r-sm);overflow:hidden;position:relative}
-.ig-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s;filter:saturate(.88)}
-.ig-item:hover img{transform:scale(1.1);filter:saturate(1.12)}
-.ig-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,79,191,.7),rgba(201,164,255,.5));opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;font-size:22px}
-.ig-item:hover .ig-ov{opacity:1}
-.ig-handle{text-align:center;margin-top:26px;font-family:var(--serif);font-size:18px;color:var(--text-mid)}
-.ig-handle a{color:var(--purple-main);font-weight:500;transition:color .25s}
-.ig-handle a:hover{color:var(--purple-dark)}
+/* ============================================================
+   INSTAGRAM STRIP
+============================================================ */
+.ig-strip { display: grid; grid-template-columns: repeat(6,1fr); gap: 8px; max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+.ig-item { aspect-ratio: 1; border-radius: 14px; overflow: hidden; position: relative; }
+.ig-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.16,1,.3,1), filter 0.4s; filter: saturate(0.9); }
+.ig-item:hover img { transform: scale(1.08); filter: saturate(1.1); }
+.ig-ov { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(123,79,191,0.7), rgba(201,164,255,0.5)); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; font-size: 20px; border-radius: 14px; }
+.ig-item:hover .ig-ov { opacity: 1; }
 
-/* =====================================================
+/* ============================================================
    NEWSLETTER
-===================================================== */
-.nl-pos{position:relative;overflow:hidden}
-.nl-glow{position:absolute;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle,rgba(201,164,255,.2),transparent);top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 6s ease-in-out infinite;pointer-events:none}
-.nl-box{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:2}
-.nl-form{display:flex;gap:10px;margin-top:34px;max-width:480px;margin-left:auto;margin-right:auto}
-.nl-input{
-  flex:1;padding:15px 22px;border-radius:50px;
-  border:1.5px solid rgba(201,164,255,.35);background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
-  font-size:14px;color:var(--text-dark);outline:none;
-  transition:border-color .3s,box-shadow .3s;
+============================================================ */
+.newsletter-section { background: var(--bg-2); }
+.newsletter-box { max-width: 580px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+.nl-form { display: flex; gap: 10px; margin-top: 32px; }
+.nl-input {
+  flex: 1; padding: 15px 22px; border-radius: 50px;
+  border: 1.5px solid rgba(201,164,255,0.32); background: var(--bg);
+  font-size: 14px; color: var(--ink); outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.nl-input:focus{border-color:var(--purple-light);box-shadow:0 0 0 4px rgba(201,164,255,.14);background:#fff}
-.nl-input::placeholder{color:var(--text-faint)}
-.nl-hint{font-size:11.5px;color:var(--text-faint);margin-top:12px}
+.nl-input:focus { border-color: var(--purple-l); box-shadow: 0 0 0 4px rgba(201,164,255,0.12); }
+.nl-input::placeholder { color: var(--ink-4); }
+.nl-hint { font-size: 11.5px; color: var(--ink-4); margin-top: 12px; }
 
-/* =====================================================
+/* ============================================================
    CONTACT
-===================================================== */
-.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.contact-lft h2{font-family:var(--serif);font-size:40px;font-weight:400;color:var(--text-dark);line-height:1.2;margin-bottom:16px}
-.contact-lft h2 em{font-style:italic;color:var(--purple-main)}
-.contact-lft p{font-size:15px;color:var(--text-soft);line-height:1.8;font-weight:300;margin-bottom:36px}
-.c-methods{display:flex;flex-direction:column;gap:14px}
-.c-method{
-  display:flex;align-items:center;gap:16px;
-  padding:18px 22px;border-radius:var(--r-sm);
-  background:var(--white);border:1px solid rgba(201,164,255,.22);
-  box-shadow:var(--shadow-sm);transition:all .3s;color:var(--text-dark);
+============================================================ */
+.contact-grid { max-width: 1100px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-lft h2 { font-family: var(--serif); font-size: 38px; font-weight: 300; color: var(--ink); line-height: 1.2; margin-bottom: 16px; }
+.contact-lft h2 em { font-style: italic; color: var(--purple); }
+.contact-lft p { font-size: 15px; color: var(--ink-3); line-height: 1.8; font-weight: 300; margin-bottom: 36px; }
+.contact-links { display: flex; flex-direction: column; gap: 13px; }
+.contact-link {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 22px; border-radius: var(--r);
+  background: var(--bg-2); border: 1px solid var(--line);
+  box-shadow: var(--sh); transition: all 0.3s;
 }
-.c-method:hover{transform:translateX(8px);border-color:rgba(201,164,255,.42);box-shadow:var(--shadow-md)}
-.c-icon{width:48px;height:48px;border-radius:14px;background:var(--lav-soft);border:1px solid rgba(201,164,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.c-txt strong{display:block;font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:2px}
-.c-txt span{font-size:13px;color:var(--text-soft);font-weight:300}
-.contact-rgt{background:var(--white);border:1px solid rgba(201,164,255,.22);border-radius:var(--r-lg);padding:38px;box-shadow:var(--shadow-sm)}
-.contact-rgt h3{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--text-dark);margin-bottom:22px}
-.hours{display:flex;flex-direction:column;gap:14px}
-.hr-row{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding-bottom:14px;border-bottom:1px solid rgba(201,164,255,.14)}
-.hr-row:last-child{border-bottom:none;padding-bottom:0}
-.hr-row .day{color:var(--text-mid)}
-.hr-row .time{color:var(--purple-main);font-weight:500}
-.soc-sec{margin-top:26px;padding-top:22px;border-top:1px solid rgba(201,164,255,.14)}
-.soc-sec h4{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px}
-.soc-row{display:flex;gap:10px}
-.soc-btn{
-  width:42px;height:42px;border-radius:12px;
-  border:1px solid rgba(201,164,255,.3);background:var(--lav-soft);
-  display:flex;align-items:center;justify-content:center;font-size:17px;
-  transition:all .3s;color:var(--text-mid);cursor:pointer;
-}
-.soc-btn:hover{background:var(--grad-btn);color:#fff;border-color:transparent;transform:translateY(-4px);box-shadow:0 8px 22px rgba(123,79,191,.35)}
+.contact-link:hover { transform: translateX(8px); border-color: rgba(201,164,255,0.4); box-shadow: var(--sh-md); }
+.contact-link-icon { width: 46px; height: 46px; border-radius: 13px; background: var(--bg-3); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.contact-link-txt strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.contact-link-txt span { font-size: 13px; color: var(--ink-3); font-weight: 300; }
+.contact-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-xl); padding: 36px; box-shadow: var(--sh); }
+.contact-card h3 { font-family: var(--serif); font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 22px; }
+.hours { display: flex; flex-direction: column; gap: 13px; }
+.hour-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; padding-bottom: 13px; border-bottom: 1px solid var(--line); }
+.hour-row:last-child { border-bottom: none; padding-bottom: 0; }
+.hour-row .day { color: var(--ink-2); }
+.hour-row .time { color: var(--purple); font-weight: 500; }
 
-/* =====================================================
+/* ============================================================
    FOOTER
-===================================================== */
-footer{background:linear-gradient(180deg,#160C30,#0B0618);padding:78px 60px 38px;position:relative;overflow:hidden}
-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--purple-light),transparent)}
-.foot-top{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(201,164,255,.1)}
-.foot-logo{display:flex;align-items:center;margin-bottom:18px}
-.foot-logo img{height:44px;width:auto;object-fit:contain;border-radius:10px}
-.foot-brand p{font-size:13.5px;color:rgba(255,255,255,.48);line-height:1.8;font-weight:300;margin-bottom:26px;max-width:250px}
-.foot-soc{display:flex;gap:9px}
-.foot-soc a{
-  width:36px;height:36px;border-radius:10px;
-  border:1px solid rgba(201,164,255,.18);background:rgba(255,255,255,.05);
-  display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .3s;
+============================================================ */
+footer {
+  background: linear-gradient(180deg, #130923, #0a0516);
+  padding: 80px 40px 36px;
+  position: relative;
 }
-.foot-soc a:hover{background:rgba(201,164,255,.18);border-color:rgba(201,164,255,.4);transform:translateY(-3px)}
-.foot-col h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple-light);margin-bottom:20px}
-.foot-links{display:flex;flex-direction:column;gap:11px}
-.foot-links a{font-size:13.5px;color:rgba(255,255,255,.48);font-weight:300;transition:all .25s}
-.foot-links a:hover{color:rgba(201,164,255,.9);padding-left:5px}
-.foot-bottom{max-width:1240px;margin:36px auto 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.foot-bottom p{font-size:12.5px;color:rgba(255,255,255,.3);font-weight:300}
-.foot-badges{display:flex;gap:8px;flex-wrap:wrap}
-.fbadge{padding:4px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);font-size:11px;color:rgba(255,255,255,.45)}
+footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--purple-l), transparent); }
+.foot-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(201,164,255,0.1); }
+.foot-logo-img { height: 44px; width: auto; border-radius: 10px; object-fit: cover; margin-bottom: 18px; }
+.foot-about p { font-size: 13.5px; color: rgba(255,255,255,0.45); line-height: 1.8; font-weight: 300; margin-bottom: 26px; max-width: 240px; }
+.foot-socials { display: flex; gap: 9px; }
+.foot-soc-btn { width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(201,164,255,0.18); background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.3s; }
+.foot-soc-btn:hover { background: rgba(201,164,255,0.18); border-color: rgba(201,164,255,0.4); transform: translateY(-3px); }
+.foot-col h4 { font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--purple-l); margin-bottom: 20px; }
+.foot-links { display: flex; flex-direction: column; gap: 11px; }
+.foot-links a { font-size: 13.5px; color: rgba(255,255,255,0.45); font-weight: 300; transition: all 0.25s; }
+.foot-links a:hover { color: rgba(201,164,255,0.9); padding-left: 5px; }
+.foot-bottom { max-width: 1280px; margin: 34px auto 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.foot-bottom p { font-size: 12px; color: rgba(255,255,255,0.28); font-weight: 300; }
+.foot-badges { display: flex; gap: 7px; }
+.foot-badge { padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.05); font-size: 11px; color: rgba(255,255,255,0.4); }
 
-/* =====================================================
+/* ============================================================
    TOAST
-===================================================== */
-#toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(90px);
-  background:rgba(255,255,255,.96);backdrop-filter:blur(18px);
-  border:1px solid rgba(201,164,255,.38);border-radius:18px;
-  padding:14px 26px;box-shadow:0 18px 55px rgba(123,79,191,.18);
-  font-size:14px;color:var(--text-dark);z-index:9999;
-  display:flex;align-items:center;gap:9px;
-  transition:transform .4s cubic-bezier(.16,1,.3,1);pointer-events:none;
+============================================================ */
+#toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(90px);
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,164,255,0.36); border-radius: 18px;
+  padding: 14px 28px; box-shadow: 0 18px 50px rgba(123,79,191,0.18);
+  font-size: 14px; color: var(--ink); z-index: 9999;
+  display: flex; align-items: center; gap: 9px;
+  transition: transform 0.4s cubic-bezier(.16,1,.3,1); pointer-events: none;
+  white-space: nowrap;
 }
-#toast.show{transform:translateX(-50%) translateY(0)}
+#toast.show { transform: translateX(-50%) translateY(0); }
 
-/* =====================================================
-   SEARCH OVERLAY
-===================================================== */
-#srch-ov{
-  position:fixed;inset:0;z-index:9900;
-  background:rgba(255,255,255,.96);backdrop-filter:blur(28px);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .35s;
-}
-#srch-ov.open{opacity:1;pointer-events:all}
-.srch-box{width:100%;max-width:640px;padding:0 40px;text-align:center}
-.srch-box h3{font-family:var(--serif);font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-faint);margin-bottom:18px}
-.srch-box input{
-  width:100%;padding:18px 24px;font-family:var(--serif);font-size:26px;
-  color:var(--text-dark);background:transparent;border:none;border-bottom:2px solid rgba(201,164,255,.45);
-  outline:none;text-align:center;letter-spacing:.5px;
-}
-.srch-box input::placeholder{color:rgba(155,111,212,.35)}
-.srch-close{position:absolute;top:28px;right:38px;font-size:26px;color:var(--text-soft);background:none;border:none;cursor:pointer;transition:color .25s}
-.srch-close:hover{color:var(--purple-main)}
-
-/* =====================================================
+/* ============================================================
    BACK TO TOP
-===================================================== */
-#btt{
-  position:fixed;bottom:28px;right:28px;z-index:500;
-  width:48px;height:48px;border-radius:50%;
-  background:var(--grad-btn);color:#fff;font-size:18px;
-  box-shadow:0 8px 28px rgba(123,79,191,.4);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transform:translateY(18px);
-  transition:opacity .4s,transform .4s;border:none;cursor:pointer;
+============================================================ */
+#btt {
+  position: fixed; bottom: 28px; right: 28px; z-index: 600;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--grad); color: #fff; font-size: 18px; border: none;
+  box-shadow: 0 8px 28px rgba(123,79,191,0.4);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.4s, transform 0.4s; cursor: pointer;
 }
-#btt.vis{opacity:1;transform:translateY(0)}
-#btt:hover{transform:translateY(-4px);box-shadow:0 14px 38px rgba(123,79,191,.52)}
+#btt.visible { opacity: 1; transform: translateY(0); }
+#btt:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(123,79,191,0.52); }
 
-/* =====================================================
+/* ============================================================
+   SEARCH
+============================================================ */
+.search-ov {
+  position: fixed; inset: 0; z-index: 950;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(30px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.35s;
+}
+.search-ov.open { opacity: 1; pointer-events: all; }
+.search-box { width: 100%; max-width: 600px; padding: 0 40px; text-align: center; }
+.search-box p { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-4); margin-bottom: 20px; }
+.search-box input { width: 100%; padding: 16px 20px; font-family: var(--serif); font-size: 28px; color: var(--ink); background: transparent; border: none; border-bottom: 2px solid rgba(201,164,255,0.4); outline: none; text-align: center; }
+.search-box input::placeholder { color: rgba(155,111,212,0.3); }
+.search-close { position: absolute; top: 28px; right: 38px; font-size: 26px; color: var(--ink-3); background: none; border: none; cursor: pointer; transition: color 0.25s; }
+.search-close:hover { color: var(--ink); }
+
+/* ============================================================
    RESPONSIVE
-===================================================== */
-@media(max-width:1200px){
-  .topbar{padding:8px 28px}
-  .nav-inner{padding:0 24px}
-  .hero-inner{padding:70px 36px 50px}
-  .feat-grid{grid-template-columns:repeat(2,1fr)}
-  .prod-grid{grid-template-columns:repeat(3,1fr)}
-  .coll-grid{grid-template-columns:repeat(3,1fr)}
-  .ig-grid{grid-template-columns:repeat(4,1fr)}
-  .foot-top{grid-template-columns:1fr 1fr;gap:36px}
-  .sec{padding:78px 36px}
-  .promo{padding:78px 36px}
-  footer{padding:60px 36px 32px}
+============================================================ */
+@media (max-width: 1200px) {
+  .products-grid { grid-template-columns: repeat(3,1fr); }
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .hero-inner { gap: 40px; }
+  .coll-grid { grid-template-columns: repeat(3,1fr); }
+  .ig-strip { grid-template-columns: repeat(4,1fr); }
 }
-@media(max-width:860px){
-  .topbar{display:none}
-  .nav-menu{display:none}
-  .hamburger{display:flex}
-  .hero-inner{grid-template-columns:1fr;text-align:center;padding:56px 22px 40px;gap:48px}
-  .hero-sub{margin-left:auto;margin-right:auto}
-  .hero-btns{justify-content:center}
-  .hero-visual{height:380px}
-  .thumb-strip{left:50%;transform:translateX(-50%)}
-  .fc-1,.fc-2{display:none}
-  .prod-grid{grid-template-columns:repeat(2,1fr)}
-  .coll-grid{grid-template-columns:repeat(2,1fr)}
-  .promo-inner{grid-template-columns:1fr;gap:40px;text-align:center}
-  .promo-row{justify-content:center}
-  .promo-vis{justify-content:center}
-  .contact-inner{grid-template-columns:1fr;gap:40px}
-  .rev-card{flex:0 0 calc(50% - 13px)}
-  .ig-grid{grid-template-columns:repeat(3,1fr)}
-  .sec{padding:64px 22px}
-  .promo{padding:64px 22px}
-  footer{padding:50px 22px 26px}
-  .foot-top{grid-template-columns:1fr;gap:30px}
-  .foot-bottom{flex-direction:column;text-align:center}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-eyebrow { margin: 0 auto 24px; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-visual { display: none; }
+  .products-grid { grid-template-columns: repeat(2,1fr); padding: 0 24px; }
+  .coll-grid { grid-template-columns: repeat(2,1fr); padding: 0 24px; }
+  .promo-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+  .promo-actions { justify-content: center; }
+  .promo-visual { justify-content: center; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+  .trust-item { padding-left: 16px; }
+  .ig-strip { grid-template-columns: repeat(3,1fr); padding: 0 24px; }
+  .reviews-slider-wrap { padding: 0 24px; }
+  .review-card { flex: 0 0 calc(50% - 12px); }
+  .container { padding: 0 24px; }
+  .section { padding: 72px 0; }
+  .foot-grid { padding: 0; }
+  footer { padding: 60px 24px 28px; }
+  .announce { padding: 8px 20px; }
+  .nav-inner { padding: 0 24px; }
 }
-@media(max-width:520px){
-  .prod-grid{grid-template-columns:1fr}
-  .feat-grid{grid-template-columns:1fr}
-  .coll-grid{grid-template-columns:repeat(2,1fr)}
-  .ig-grid{grid-template-columns:repeat(2,1fr)}
-  .rev-card{flex:0 0 100%}
-  .nl-form{flex-direction:column}
-  .hero-card{width:220px;height:300px}
-  .hero-visual{height:330px}
-  .nav-inner{grid-template-columns:auto auto}
+@media (max-width: 560px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .coll-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .coll-card { height: 220px; }
+  .ig-strip { grid-template-columns: repeat(2,1fr); }
+  .review-card { flex: 0 0 100%; }
+  .nl-form { flex-direction: column; }
+  .hero-stats { flex-direction: column; gap: 16px; align-items: center; }
+  .trust-inner { flex-direction: column; align-items: flex-start; gap: 0; }
+  .trust-item { border-right: none; border-bottom: 1px solid var(--line); width: 100%; }
+  .trust-item:last-child { border-bottom: none; }
+  .foot-grid { grid-template-columns: 1fr; gap: 32px; }
+  .foot-bottom { flex-direction: column; text-align: center; }
+  .cart-drawer { width: 100%; }
 }
 </style>
 </head>
@@ -658,63 +762,91 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
 <!-- ── LOADER ── -->
 <div id="loader">
-  <div class="ld-logo">
-    <img src="https://i.imgur.com/ZA3CGyV.jpeg" alt="The Beauty Drop" onerror="this.style.display='none'">
-  </div>
-  <div class="ld-track"><div class="ld-fill"></div></div>
-</div>
-
-<!-- ── CURSOR ── -->
-<div class="c-dot" id="cDot"></div>
-<div class="c-ring" id="cRing"></div>
-
-<!-- ── TOAST ── -->
-<div id="toast"><span>✨</span><span id="toastTxt">Done!</span></div>
-
-<!-- ── SEARCH ── -->
-<div id="srch-ov" role="dialog" aria-modal="true" aria-label="Search">
-  <div class="srch-box">
-    <h3 id="srchLabel">Search Products</h3>
-    <input type="text" id="srchInput" placeholder="Type something…" aria-label="Search input">
-  </div>
-  <button class="srch-close" id="srchClose" aria-label="Close search">✕</button>
+  <div class="loader-logo"><img src="https://i.imgur.com/ZA3CGyV.jpeg" alt="The Beauty Drop" onerror="this.style.display='none'"></div>
+  <div class="loader-bar"><div class="loader-progress"></div></div>
+  <p class="loader-text">Loading Experience</p>
 </div>
 
 <!-- ── BACK TO TOP ── -->
 <button id="btt" aria-label="Back to top">↑</button>
 
+<!-- ── TOAST ── -->
+<div id="toast" aria-live="polite"><span id="toastIcon">✨</span><span id="toastMsg">Done!</span></div>
+
+<!-- ── SEARCH ── -->
+<div class="search-ov" id="searchOv" role="dialog" aria-label="Search">
+  <div class="search-box">
+    <p id="srchLabel">Search Products</p>
+    <input type="text" id="srchInput" placeholder="Start typing…" aria-label="Search">
+  </div>
+  <button class="search-close" id="srchClose" aria-label="Close">✕</button>
+</div>
+
 <!-- ── MOBILE MENU ── -->
-<div class="mob-menu" id="mobMenu" role="navigation">
-  <button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
-  <a href="#home" onclick="closeMenu()">Home</a>
-  <a href="#shop" onclick="closeMenu()">Shop</a>
-  <a href="#collections" onclick="closeMenu()">Collections</a>
-  <a href="#reviews" onclick="closeMenu()">Reviews</a>
-  <a href="#contact" onclick="closeMenu()">Contact</a>
+<div class="mob-nav" id="mobNav">
+  <button class="mob-nav-close" id="mobNavClose" aria-label="Close menu">✕</button>
+  <a href="#home" onclick="closeMob()">Home</a>
+  <a href="#shop" onclick="closeMob()">Shop</a>
+  <a href="#collections" onclick="closeMob()">Collections</a>
+  <a href="#reviews" onclick="closeMob()">Reviews</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     TOP BAR
-════════════════════════════════════════════════ -->
-<div class="topbar">
-  <div class="tb-marquee">
-    <span>🌸 Free delivery across Lebanon &nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp; 100% Natural Ingredients &nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp; Cruelty Free &nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp; Order via WhatsApp: +961 79 112 062 &nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp; New Arrivals Every Week &nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;</span>
+<!-- ── CART OVERLAY ── -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- ── CART DRAWER ── -->
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-head">
+    <div>
+      <h2 id="cartTitle">Your Cart</h2>
+      <p class="cart-head-sub" id="cartSub">0 items</p>
+    </div>
+    <button class="cart-close" onclick="closeCart()" aria-label="Close cart">✕</button>
   </div>
-  <div class="tb-right">
-    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <h3 id="cartEmptyTitle">Your cart is empty</h3>
+      <p id="cartEmptyText">Add something beautiful to get started.</p>
+    </div>
+  </div>
+  <div class="cart-foot" id="cartFoot" style="display:none;">
+    <div class="cart-summary">
+      <div class="cart-row"><span id="subtotalLabel">Subtotal</span><span id="cartSubtotal">$0</span></div>
+      <div class="cart-row"><span id="shippingLabel">Shipping</span><span id="shippingVal">Free</span></div>
+      <div class="cart-row total"><span id="totalLabel">Total</span><span id="cartTotal">$0</span></div>
+    </div>
+    <button class="btn-checkout" id="checkoutBtn" onclick="checkoutWhatsApp()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span id="checkoutBtnTxt">Order via WhatsApp</span>
+    </button>
+    <p class="cart-secure" id="cartSecure">🔒 Secure WhatsApp checkout · Free delivery in Lebanon</p>
+  </div>
+</aside>
+
+<!-- ════════════════════════════════════════════════════
+     ANNOUNCEMENT BAR
+════════════════════════════════════════════════════ -->
+<div class="announce">
+  <div class="announce-scroll">
+    <span>✦ Free delivery across Lebanon &nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp; 100% Natural Ingredients &nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp; Order via WhatsApp in seconds &nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp; New arrivals every week &nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp; Cruelty Free &nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp;</span>
+  </div>
+  <div class="announce-right">
+    <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://wa.me/96179112062" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      NAVBAR
-════════════════════════════════════════════════ -->
-<nav id="navbar" role="navigation" aria-label="Main navigation">
+════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="#home" aria-label="The Beauty Drop Home">
-      <img src="https://i.imgur.com/ZA3CGyV.jpeg" alt="The Beauty Drop" style="height:48px;border-radius:10px;" onerror="this.style.display='none'">
+    <a class="nav-logo" href="#home">
+      <img src="https://i.imgur.com/ZA3CGyV.jpeg" alt="The Beauty Drop" onerror="this.style.display='none'">
     </a>
-    <ul class="nav-menu">
+    <ul class="nav-links">
       <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
       <li><a href="#shop" data-en="Shop" data-ar="تسوق">Shop</a></li>
       <li><a href="#collections" data-en="Collections" data-ar="المجموعات">Collections</a></li>
@@ -722,521 +854,310 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       <li><a href="#contact" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="nav-icon" id="searchBtn" aria-label="Search">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <button class="nav-btn" id="searchToggle" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
-      <button class="nav-icon" aria-label="Wishlist" onclick="showToast('💜 Wishlist coming soon!')">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <button class="nav-btn" aria-label="Wishlist" onclick="toast('💜 Wishlist coming soon!','💜')">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </button>
-      <button class="nav-icon" aria-label="Shopping Cart" onclick="showToast('🛒 Cart coming soon!')">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-dot" aria-label="3 items in cart">3</span>
+      <button class="nav-btn" id="cartToggle" aria-label="Open cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
       </button>
-      <div class="lang-wrap" role="group" aria-label="Language selection">
-        <button class="lang-btn on" id="lEN" onclick="setLang('en')" aria-pressed="true">EN</button>
-        <button class="lang-btn" id="lAR" onclick="setLang('ar')" aria-pressed="false">AR</button>
+      <div class="lang-pill">
+        <button id="lEN" class="active" onclick="setLang('en')">EN</button>
+        <button id="lAR" onclick="setLang('ar')">AR</button>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      HERO
-════════════════════════════════════════════════ -->
-<section class="hero" id="home" aria-label="Hero section">
-  <div class="hero-orbs" aria-hidden="true">
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
+════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-blobs">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
   </div>
-  <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
-
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-tag" id="heroTag">Luxury Beauty Essentials</div>
+      <div class="hero-eyebrow" id="heroEye">Luxury Beauty Essentials</div>
       <h1 class="hero-h1">
         <span id="heroThe">The</span>
-        <span class="drop" id="heroMain">BEAUTY DROP</span>
+        <strong id="heroMain">BEAUTY DROP</strong>
         <em id="heroEm">Collection 2025</em>
       </h1>
-      <p class="hero-sub" id="heroSub">Luxury beauty essentials designed for everyday confidence — curated for the modern woman who deserves only the finest.</p>
-      <div class="hero-btns">
-        <a href="#shop" class="btn-fill" id="heroBtnA">✦ Shop Now</a>
-        <a href="#collections" class="btn-outline" id="heroBtnB">Explore Collections →</a>
+      <p class="hero-sub" id="heroSub">Luxury beauty essentials designed for everyday confidence. Curated for the woman who deserves only the finest.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn-primary" id="heroBtnA">✦ Shop Now</a>
+        <a href="#collections" class="btn-ghost" id="heroBtnB">Collections →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">2K+</div>
+          <div class="stat-label" data-en="Happy Clients" data-ar="عميلة سعيدة">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label" data-en="Products" data-ar="منتج">Products</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label" data-en="Average Rating" data-ar="متوسط التقييم">Average Rating</div>
+        </div>
       </div>
     </div>
-
-    <div class="hero-visual" id="heroVisual" aria-hidden="true">
-      <div class="glow-ring"></div>
-      <div class="fc fc-1">
-        <div class="fc-label">Best Seller</div>
-        <div class="fc-val">Rose Glow Serum</div>
-        <div class="fc-stars">★★★★★</div>
+    <div class="hero-visual">
+      <div class="hero-glow"></div>
+      <div class="hero-pill pill-1">
+        <div class="pill-label">Best Seller</div>
+        <div class="pill-val">Rose Glow Serum</div>
+        <div class="pill-stars">★★★★★</div>
       </div>
-      <div class="hero-card" id="heroCard">
-        <img src="https://i.imgur.com/u2XACcD.jpeg" alt="Featured beauty product" id="heroCardImg" onerror="this.parentElement.style.background='linear-gradient(135deg,#F3EEFF,#E2D1FF)'">
+      <div class="hero-main-img" id="heroImg">
+        <img src="https://i.imgur.com/u2XACcD.jpeg" alt="Featured product" id="heroImgEl">
       </div>
-      <div class="fc fc-2">
-        <div class="fc-label">New Arrival</div>
-        <div class="fc-val">$22 – $89</div>
+      <div class="hero-pill pill-2">
+        <div class="pill-label">New Arrival</div>
+        <div class="pill-val">From $22</div>
       </div>
-      <div class="thumb-strip">
-        <div class="thumb"><img src="https://i.imgur.com/tVTdEvJ.jpeg" alt="Product 2" onerror="this.parentElement.style.background='var(--lav-mid)'"></div>
-        <div class="thumb"><img src="https://i.imgur.com/6W1FHNh.jpeg" alt="Product 3" onerror="this.parentElement.style.background='var(--lav-mid)'"></div>
-        <div class="thumb"><img src="https://i.imgur.com/m3qcsx5.jpeg" alt="Product 4" onerror="this.parentElement.style.background='var(--lav-mid)'"></div>
+      <div class="hero-thumbs">
+        <div class="hero-thumb"><img src="https://i.imgur.com/tVTdEvJ.jpeg" alt=""></div>
+        <div class="hero-thumb"><img src="https://i.imgur.com/6W1FHNh.jpeg" alt=""></div>
+        <div class="hero-thumb"><img src="https://i.imgur.com/m3qcsx5.jpeg" alt=""></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      TRUST BAR
-════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════ -->
 <div class="trust-bar">
   <div class="trust-inner">
-    <div class="trust-item"><span class="trust-icon">🌿</span><span data-en="Natural Ingredients" data-ar="مكونات طبيعية">Natural Ingredients</span></div>
-    <div class="trust-sep" aria-hidden="true"></div>
-    <div class="trust-item"><span class="trust-icon">💜</span><span data-en="Made with Love" data-ar="مصنوعة بحب">Made with Love</span></div>
-    <div class="trust-sep" aria-hidden="true"></div>
-    <div class="trust-item"><span class="trust-icon">💎</span><span data-en="Premium Quality" data-ar="جودة فاخرة">Premium Quality</span></div>
-    <div class="trust-sep" aria-hidden="true"></div>
-    <div class="trust-item"><span class="trust-icon">🐾</span><span data-en="Cruelty Free" data-ar="خالٍ من القسوة">Cruelty Free</span></div>
+    <div class="trust-item reveal delay-1"><span class="trust-item-icon">🌿</span><span data-en="100% Natural Ingredients" data-ar="مكونات طبيعية 100٪">100% Natural Ingredients</span></div>
+    <div class="trust-item reveal delay-2"><span class="trust-item-icon">💎</span><span data-en="Premium Quality Guaranteed" data-ar="جودة فاخرة مضمونة">Premium Quality Guaranteed</span></div>
+    <div class="trust-item reveal delay-3"><span class="trust-item-icon">🐾</span><span data-en="Cruelty Free" data-ar="خالٍ من القسوة">Cruelty Free</span></div>
+    <div class="trust-item reveal delay-4"><span class="trust-item-icon">🚀</span><span data-en="Free Delivery in Lebanon" data-ar="توصيل مجاني في لبنان">Free Delivery in Lebanon</span></div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     FEATURES
-════════════════════════════════════════════════ -->
-<section class="sec sec-white" id="features" aria-label="Our features">
-  <div class="sec-head reveal">
-    <div class="sec-eye" data-en="Why Choose Us" data-ar="لماذا تختارنا">Why Choose Us</div>
-    <h2 class="sec-title" data-en="The Beauty Drop Promise" data-ar="وعد ذا بيوتي دروب">The Beauty Drop <em>Promise</em></h2>
-    <p class="sec-sub" data-en="Every product is thoughtfully created — because your skin deserves nothing less than extraordinary." data-ar="كل منتج مصنوع بعناية — لأن بشرتك تستحق أكثر من العادي.">Every product is thoughtfully created — because your skin deserves nothing less than extraordinary.</p>
-  </div>
-  <div class="feat-grid">
-    <div class="feat-card reveal d1">
-      <div class="feat-icon">🌿</div>
-      <h3 data-en="Natural Ingredients" data-ar="مكونات طبيعية">Natural Ingredients</h3>
-      <p data-en="Pure botanical extracts and cold-pressed oils sourced from nature's finest. No fillers, no shortcuts." data-ar="مستخلصات نباتية نقية وزيوت معصورة على البارد. لا مواد حشو، لا اختصارات.">Pure botanical extracts and cold-pressed oils sourced from nature's finest. No fillers, no shortcuts.</p>
+<!-- ════════════════════════════════════════════════════
+     SHOP / PRODUCTS
+════════════════════════════════════════════════════ -->
+<section class="section products-section" id="shop">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye" data-en="Our Favorites" data-ar="مفضلاتنا">Our Favorites</div>
+      <h2 class="section-title" data-en="Best Sellers" data-ar="الأكثر مبيعاً">Best <em>Sellers</em></h2>
+      <p class="section-sub" data-en="The products our community loves most — editor picks for glowing, radiant skin." data-ar="المنتجات التي يحبها مجتمعنا أكثر — اختيارات المحررين لبشرة متوهجة.">The products our community loves most — editor picks for glowing, radiant skin.</p>
     </div>
-    <div class="feat-card reveal d2">
-      <div class="feat-icon">💎</div>
-      <h3 data-en="Premium Quality" data-ar="جودة فاخرة">Premium Quality</h3>
-      <p data-en="Formulated and rigorously tested to meet luxury beauty standards. Every jar, every drop — perfected." data-ar="مُصاغة ومختبرة بدقة لتلبية معايير الجمال الفاخر. كل جرة، كل قطرة — مثالية.">Formulated and rigorously tested to meet luxury beauty standards. Every jar, every drop — perfected.</p>
-    </div>
-    <div class="feat-card reveal d3">
-      <div class="feat-icon">🐾</div>
-      <h3 data-en="Cruelty Free" data-ar="خالٍ من القسوة">Cruelty Free</h3>
-      <p data-en="Proudly 100% cruelty-free. Our products are never tested on animals — beauty with a conscience." data-ar="فخورون بكوننا خاليين تمامًا من القسوة. منتجاتنا لا تُختبر على الحيوانات أبدًا.">Proudly 100% cruelty-free. Our products are never tested on animals — beauty with a conscience.</p>
-    </div>
-    <div class="feat-card reveal d4">
-      <div class="feat-icon">🚀</div>
-      <h3 data-en="Fast Delivery" data-ar="توصيل سريع">Fast Delivery</h3>
-      <p data-en="Swift, secure delivery across all of Lebanon. Your beauty essentials arrive gift-wrapped and on time." data-ar="توصيل سريع وآمن في جميع أنحاء لبنان. أساسياتك الجمالية تصل ملفوفة كهدية وفي الوقت المناسب.">Swift, secure delivery across all of Lebanon. Your beauty essentials arrive gift-wrapped and on time.</p>
+    <div class="filters reveal">
+      <button class="filter-btn active" onclick="filterProducts('all', this)" data-en="All" data-ar="الكل">All</button>
+      <button class="filter-btn" onclick="filterProducts('skincare', this)" data-en="Skincare" data-ar="العناية بالبشرة">Skincare</button>
+      <button class="filter-btn" onclick="filterProducts('makeup', this)" data-en="Makeup" data-ar="مكياج">Makeup</button>
+      <button class="filter-btn" onclick="filterProducts('body', this)" data-en="Body" data-ar="الجسم">Body</button>
+      <button class="filter-btn" onclick="filterProducts('sets', this)" data-en="Gift Sets" data-ar="طقم هدايا">Gift Sets</button>
     </div>
   </div>
+  <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     BEST SELLERS
-════════════════════════════════════════════════ -->
-<section class="sec sec-alt" id="shop" aria-label="Best sellers">
-  <div class="sec-head reveal">
-    <div class="sec-eye" data-en="Our Favorites" data-ar="مفضلاتنا">Our Favorites</div>
-    <h2 class="sec-title" data-en="Best Sellers" data-ar="الأكثر مبيعاً">Best <em>Sellers</em></h2>
-    <p class="sec-sub" data-en="The products our community keeps coming back for — editor-curated, customer-approved." data-ar="المنتجات التي يعود إليها مجتمعنا دائمًا — مختارة من المحررين، معتمدة من العملاء.">The products our community keeps coming back for — editor-curated, customer-approved.</p>
-  </div>
-  <div class="prod-grid" id="prodGrid">
-
-    <article class="prod-card reveal d1">
-      <div class="prod-img">
-        <span class="prod-badge" data-en="Best Seller" data-ar="الأكثر مبيعاً">Best Seller</span>
-        <button class="prod-wish" aria-label="Add to wishlist" onclick="wishToggle(this)">♡</button>
-        <img src="https://i.imgur.com/u2XACcD.jpeg" alt="Rose Glow Serum" loading="lazy" onerror="this.parentElement.style.background='var(--lav-mid)'">
-        <div class="prod-ov" aria-hidden="true"></div>
-      </div>
-      <div class="prod-body">
-        <div class="prod-stars" aria-label="5 out of 5 stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          <span class="prod-cnt">(248)</span>
-        </div>
-        <div class="prod-name" data-en="Rose Glow Serum" data-ar="سيروم وردة اللمعان">Rose Glow Serum</div>
-        <div class="prod-desc" data-en="Hydrating rose extract serum for radiant, dewy skin all day long" data-ar="سيروم مرطب بمستخلص الورد لبشرة متوهجة طوال اليوم">Hydrating rose extract serum for radiant, dewy skin all day long</div>
-        <div class="prod-foot">
-          <div class="prod-price">$29 <s>$40</s></div>
-          <button class="btn-buy" onclick="doOrder('Rose Glow Serum','$29','https://i.imgur.com/u2XACcD.jpeg')">Buy Now</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="prod-card reveal d2">
-      <div class="prod-img">
-        <span class="prod-badge" data-en="New" data-ar="جديد">New</span>
-        <button class="prod-wish" aria-label="Add to wishlist" onclick="wishToggle(this)">♡</button>
-        <img src="https://i.imgur.com/tVTdEvJ.jpeg" alt="Velvet Lip Gloss" loading="lazy" onerror="this.parentElement.style.background='var(--lav-mid)'">
-        <div class="prod-ov" aria-hidden="true"></div>
-      </div>
-      <div class="prod-body">
-        <div class="prod-stars" aria-label="5 out of 5 stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          <span class="prod-cnt">(183)</span>
-        </div>
-        <div class="prod-name" data-en="Velvet Lip Gloss" data-ar="غلوس الشفاه المخملي">Velvet Lip Gloss</div>
-        <div class="prod-desc" data-en="High-shine lip color with plumping hyaluronic formula" data-ar="لون شفاه عالي اللمعان بفورمولا مكبّرة بحمض الهيالورونيك">High-shine lip color with plumping hyaluronic formula</div>
-        <div class="prod-foot">
-          <div class="prod-price">$22 <s>$32</s></div>
-          <button class="btn-buy" onclick="doOrder('Velvet Lip Gloss','$22','https://i.imgur.com/tVTdEvJ.jpeg')">Buy Now</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="prod-card reveal d3">
-      <div class="prod-img">
-        <span class="prod-badge" data-en="Trending" data-ar="رائج">Trending</span>
-        <button class="prod-wish" aria-label="Add to wishlist" onclick="wishToggle(this)">♡</button>
-        <img src="https://i.imgur.com/6W1FHNh.jpeg" alt="Silk Foundation" loading="lazy" onerror="this.parentElement.style.background='var(--lav-mid)'">
-        <div class="prod-ov" aria-hidden="true"></div>
-      </div>
-      <div class="prod-body">
-        <div class="prod-stars" aria-label="5 out of 5 stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          <span class="prod-cnt">(312)</span>
-        </div>
-        <div class="prod-name" data-en="Silk Foundation" data-ar="أساس حريري">Silk Foundation</div>
-        <div class="prod-desc" data-en="Featherlight coverage that melts seamlessly into every skin tone" data-ar="تغطية خفيفة كالريشة تذوب بسلاسة في كل لون بشرة">Featherlight coverage that melts seamlessly into every skin tone</div>
-        <div class="prod-foot">
-          <div class="prod-price">$45 <s>$60</s></div>
-          <button class="btn-buy" onclick="doOrder('Silk Foundation','$45','https://i.imgur.com/6W1FHNh.jpeg')">Buy Now</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="prod-card reveal d4">
-      <div class="prod-img">
-        <span class="prod-badge" data-en="Luxury" data-ar="فاخر">Luxury</span>
-        <button class="prod-wish" aria-label="Add to wishlist" onclick="wishToggle(this)">♡</button>
-        <img src="https://i.imgur.com/m3qcsx5.jpeg" alt="Pearl Glow Cream" loading="lazy" onerror="this.parentElement.style.background='var(--lav-mid)'">
-        <div class="prod-ov" aria-hidden="true"></div>
-      </div>
-      <div class="prod-body">
-        <div class="prod-stars" aria-label="5 out of 5 stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          <span class="prod-cnt">(157)</span>
-        </div>
-        <div class="prod-name" data-en="Pearl Glow Cream" data-ar="كريم لؤلؤة اللمعان">Pearl Glow Cream</div>
-        <div class="prod-desc" data-en="Deep nourishing cream with pearl extract and vitamin C complex" data-ar="كريم مغذٍّ عميق بمستخلص اللؤلؤ ومركب فيتامين C">Deep nourishing cream with pearl extract and vitamin C complex</div>
-        <div class="prod-foot">
-          <div class="prod-price">$55 <s>$75</s></div>
-          <button class="btn-buy" onclick="doOrder('Pearl Glow Cream','$55','https://i.imgur.com/m3qcsx5.jpeg')">Buy Now</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="prod-card reveal d4">
-      <div class="prod-img">
-        <span class="prod-badge" data-en="Must Have" data-ar="لا غنى عنه">Must Have</span>
-        <button class="prod-wish" aria-label="Add to wishlist" onclick="wishToggle(this)">♡</button>
-        <img src="https://i.imgur.com/4qyJd5e.jpeg" alt="Golden Eye Palette" loading="lazy" onerror="this.parentElement.style.background='var(--lav-mid)'">
-        <div class="prod-ov" aria-hidden="true"></div>
-      </div>
-      <div class="prod-body">
-        <div class="prod-stars" aria-label="5 out of 5 stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          <span class="prod-cnt">(421)</span>
-        </div>
-        <div class="prod-name" data-en="Golden Eye Palette" data-ar="باليت العيون الذهبي">Golden Eye Palette</div>
-        <div class="prod-desc" data-en="12 artisanal shades — warm golds to cool mauves, all day wear" data-ar="12 درجة حرفية — من الذهبي الدافئ إلى الأوف وايت البارد، ثبات طوال اليوم">12 artisanal shades — warm golds to cool mauves, all day wear</div>
-        <div class="prod-foot">
-          <div class="prod-price">$65 <s>$89</s></div>
-          <button class="btn-buy" onclick="doOrder('Golden Eye Palette','$65','https://i.imgur.com/4qyJd5e.jpeg')">Buy Now</button>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      COLLECTIONS
-════════════════════════════════════════════════ -->
-<section class="sec sec-white" id="collections" aria-label="Product collections">
-  <div class="sec-head reveal">
-    <div class="sec-eye" data-en="Browse By Category" data-ar="تصفح حسب الفئة">Browse By Category</div>
-    <h2 class="sec-title" data-en="Our Collections" data-ar="مجموعاتنا">Our <em>Collections</em></h2>
-    <p class="sec-sub" data-en="From skincare rituals to artful makeup — explore every dimension of The Beauty Drop." data-ar="من طقوس العناية بالبشرة إلى المكياج الإبداعي — استكشفي كل أبعاد ذا بيوتي دروب.">From skincare rituals to artful makeup — explore every dimension of The Beauty Drop.</p>
+════════════════════════════════════════════════════ -->
+<section class="section" id="collections">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye" data-en="Browse by Category" data-ar="تصفح حسب الفئة">Browse by Category</div>
+      <h2 class="section-title" data-en="Our Collections" data-ar="مجموعاتنا">Our <em>Collections</em></h2>
+    </div>
   </div>
   <div class="coll-grid">
-    <div class="coll-card cc1 reveal d1" role="button" tabindex="0" aria-label="Face Care collection" onclick="showToast('🌟 Face Care — coming soon!')">
-      <div class="coll-bg" aria-hidden="true"></div>
-      <div class="coll-emoji" aria-hidden="true">🌟</div>
-      <div class="coll-info">
-        <h3 data-en="Face Care" data-ar="العناية بالوجه">Face Care</h3>
-        <p data-en="24 Products" data-ar="24 منتج">24 Products</p>
-      </div>
+    <div class="coll-card c-1 reveal delay-1" onclick="filterByCategory('skincare')">
+      <div class="coll-bg"></div>
+      <div class="coll-emoji">🌟</div>
+      <div class="coll-info"><h3 data-en="Face Care" data-ar="العناية بالوجه">Face Care</h3><p data-en="24 Products" data-ar="24 منتج">24 Products</p></div>
     </div>
-    <div class="coll-card cc2 reveal d2" role="button" tabindex="0" aria-label="Body Care collection" onclick="showToast('🧴 Body Care — coming soon!')">
-      <div class="coll-bg" aria-hidden="true"></div>
-      <div class="coll-emoji" aria-hidden="true">🧴</div>
-      <div class="coll-info">
-        <h3 data-en="Body Care" data-ar="العناية بالجسم">Body Care</h3>
-        <p data-en="18 Products" data-ar="18 منتج">18 Products</p>
-      </div>
+    <div class="coll-card c-2 reveal delay-2" onclick="filterByCategory('body')">
+      <div class="coll-bg"></div>
+      <div class="coll-emoji">🧴</div>
+      <div class="coll-info"><h3 data-en="Body Care" data-ar="العناية بالجسم">Body Care</h3><p data-en="18 Products" data-ar="18 منتج">18 Products</p></div>
     </div>
-    <div class="coll-card cc3 reveal d3" role="button" tabindex="0" aria-label="Makeup collection" onclick="showToast('💄 Makeup — coming soon!')">
-      <div class="coll-bg" aria-hidden="true"></div>
-      <div class="coll-emoji" aria-hidden="true">💄</div>
-      <div class="coll-info">
-        <h3 data-en="Makeup" data-ar="مكياج">Makeup</h3>
-        <p data-en="36 Products" data-ar="36 منتج">36 Products</p>
-      </div>
+    <div class="coll-card c-3 reveal delay-3" onclick="filterByCategory('makeup')">
+      <div class="coll-bg"></div>
+      <div class="coll-emoji">💄</div>
+      <div class="coll-info"><h3 data-en="Makeup" data-ar="مكياج">Makeup</h3><p data-en="36 Products" data-ar="36 منتج">36 Products</p></div>
     </div>
-    <div class="coll-card cc4 reveal d4" role="button" tabindex="0" aria-label="Hair Care collection" onclick="showToast('✨ Hair Care — coming soon!')">
-      <div class="coll-bg" aria-hidden="true"></div>
-      <div class="coll-emoji" aria-hidden="true">✨</div>
-      <div class="coll-info">
-        <h3 data-en="Hair Care" data-ar="العناية بالشعر">Hair Care</h3>
-        <p data-en="15 Products" data-ar="15 منتج">15 Products</p>
-      </div>
+    <div class="coll-card c-4 reveal delay-4" onclick="toast('✨ Hair Care — coming soon!','✨')">
+      <div class="coll-bg"></div>
+      <div class="coll-emoji">✨</div>
+      <div class="coll-info"><h3 data-en="Hair Care" data-ar="العناية بالشعر">Hair Care</h3><p data-en="15 Products" data-ar="15 منتج">15 Products</p></div>
     </div>
-    <div class="coll-card cc5 reveal d4" role="button" tabindex="0" aria-label="Gift Sets collection" onclick="showToast('🎁 Gift Sets — coming soon!')">
-      <div class="coll-bg" aria-hidden="true"></div>
-      <div class="coll-emoji" aria-hidden="true">🎁</div>
-      <div class="coll-info">
-        <h3 data-en="Gift Sets" data-ar="طقم هدايا">Gift Sets</h3>
-        <p data-en="12 Products" data-ar="12 منتج">12 Products</p>
-      </div>
+    <div class="coll-card c-5 reveal delay-5" onclick="filterByCategory('sets')">
+      <div class="coll-bg"></div>
+      <div class="coll-emoji">🎁</div>
+      <div class="coll-info"><h3 data-en="Gift Sets" data-ar="طقم هدايا">Gift Sets</h3><p data-en="12 Products" data-ar="12 منتج">12 Products</p></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     PROMO BANNER
-════════════════════════════════════════════════ -->
-<section class="promo" id="promo" aria-label="Promotional offer">
-  <div class="pb pb-a" aria-hidden="true"></div>
-  <div class="pb pb-b" aria-hidden="true"></div>
+<!-- ════════════════════════════════════════════════════
+     PROMO DARK
+════════════════════════════════════════════════════ -->
+<section class="promo-dark" id="promo">
+  <div class="promo-blob promo-blob-a"></div>
+  <div class="promo-blob promo-blob-b"></div>
   <div class="promo-inner">
-    <div class="promo-text reveal">
-      <div class="sec-eye" data-en="Limited Offer" data-ar="عرض محدود">Limited Offer</div>
-      <h2 class="promo-title" data-en="Radiance Starts With The Right Ritual" data-ar="اللمعان يبدأ بالطقس الصحيح">Radiance Starts With <em>The Right Ritual</em></h2>
-      <p class="promo-sub" data-en="Treat yourself to our exclusive Glow Collection — curated for women who deserve nothing but the absolute best. Limited stock available." data-ar="دللي نفسك بمجموعة اللمعان الحصرية — مُعدّة للمرأة التي تستحق الأفضل فقط. المخزون محدود.">Treat yourself to our exclusive Glow Collection — curated for women who deserve nothing but the absolute best. Limited stock available.</p>
-      <div class="promo-row">
-        <a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer" class="btn-ghost" data-en="🌟 Shop on WhatsApp" data-ar="🌟 تسوقي على واتساب">🌟 Shop on WhatsApp</a>
-        <div class="promo-disc">
+    <div class="promo-text reveal-l">
+      <div class="promo-eyebrow" data-en="Limited Time Offer" data-ar="عرض محدود الوقت">Limited Time Offer</div>
+      <h2 class="promo-h2" data-en="Radiance Starts With The Right Ritual" data-ar="اللمعان يبدأ بالطقس الصحيح">Radiance Starts With <em>The Right Ritual</em></h2>
+      <p class="promo-p" data-en="Treat yourself to our exclusive Glow Collection. Curated for women who deserve nothing but the absolute best. Limited stock available." data-ar="دللي نفسك بمجموعة اللمعان الحصرية. مُعدّة للمرأة التي تستحق الأفضل فقط. المخزون محدود.">Treat yourself to our exclusive Glow Collection. Curated for women who deserve nothing but the absolute best. Limited stock available.</p>
+      <div class="promo-actions">
+        <a href="https://wa.me/96179112062" target="_blank" rel="noopener" class="btn-white" data-en="🌟 Shop on WhatsApp" data-ar="🌟 تسوقي على واتساب">🌟 Shop on WhatsApp</a>
+        <div class="promo-discount">
           <big>30% OFF</big>
-          <small data-en="on your first order" data-ar="على أول طلب">on your first order</small>
+          <small data-en="First order" data-ar="أول طلب">First order</small>
         </div>
       </div>
     </div>
-    <div class="promo-vis reveal d3" aria-hidden="true">
-      <div class="promo-main"><img src="https://i.imgur.com/m3qcsx5.jpeg" alt="" onerror="this.parentElement.style.background='rgba(201,164,255,.2)'"></div>
-      <div class="promo-side"><img src="https://i.imgur.com/4qyJd5e.jpeg" alt="" onerror="this.parentElement.style.background='rgba(201,164,255,.2)'"></div>
+    <div class="promo-visual reveal-r">
+      <div class="promo-img-main"><img src="https://i.imgur.com/m3qcsx5.jpeg" alt="" onerror="this.parentElement.style.background='rgba(201,164,255,0.2)'"></div>
+      <div class="promo-img-side"><img src="https://i.imgur.com/4qyJd5e.jpeg" alt="" onerror="this.parentElement.style.background='rgba(201,164,255,0.2)'"></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      REVIEWS
-════════════════════════════════════════════════ -->
-<section class="sec sec-alt" id="reviews" aria-label="Customer reviews">
-  <div class="sec-head reveal">
-    <div class="sec-eye" data-en="What They Say" data-ar="ما يقولونه">What They Say</div>
-    <h2 class="sec-title" data-en="Client Reviews" data-ar="تقييمات العملاء">Client <em>Reviews</em></h2>
-    <p class="sec-sub" data-en="Real words from real women who found their confidence with The Beauty Drop." data-ar="كلمات حقيقية من نساء حقيقيات وجدن ثقتهن مع ذا بيوتي دروب.">Real words from real women who found their confidence with The Beauty Drop.</p>
+════════════════════════════════════════════════════ -->
+<section class="section reviews-section" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye" data-en="What They Say" data-ar="ما يقولونه">What They Say</div>
+      <h2 class="section-title" data-en="Client Reviews" data-ar="تقييمات العملاء">Client <em>Reviews</em></h2>
+      <p class="section-sub" data-en="Real women. Real results. Real confidence." data-ar="نساء حقيقيات. نتائج حقيقية. ثقة حقيقية.">Real women. Real results. Real confidence.</p>
+    </div>
   </div>
-  <div class="rev-wrap reveal">
-    <div class="rev-outer">
-      <div class="rev-track" id="revTrack" role="list">
-
-        <div class="rev-card" role="listitem">
-          <div class="rev-stars" aria-label="5 stars"><span>★★★★★</span></div>
-          <p class="rev-text">"The Rose Glow Serum completely transformed my skin. After one month my complexion has never looked this luminous. Absolutely obsessed with The Beauty Drop!"</p>
-          <div class="rev-auth">
-            <div class="rev-ava" aria-hidden="true">🌸</div>
-            <div><strong>Sarah M.</strong><span>Verified · Beirut</span></div>
-          </div>
-        </div>
-
-        <div class="rev-card" role="listitem">
-          <div class="rev-stars" aria-label="5 stars"><span>★★★★★</span></div>
-          <p class="rev-text" lang="ar" dir="rtl">"السيروم رائع جداً! بشرتي أصبحت ناعمة ومتوهجة من أول أسبوع. التغليف فاخر والتوصيل كان سريعاً جداً. سأطلب مجدداً بالتأكيد!"</p>
-          <div class="rev-auth">
-            <div class="rev-ava" aria-hidden="true">💫</div>
-            <div><strong>لارا حداد</strong><span>موثقة · طرابلس</span></div>
-          </div>
-        </div>
-
-        <div class="rev-card" role="listitem">
-          <div class="rev-stars" aria-label="5 stars"><span>★★★★★</span></div>
-          <p class="rev-text">"Bought the Velvet Lip Gloss and Pearl Cream together — they're a match made in heaven. The packaging feels genuinely luxury. 10/10 would recommend!"</p>
-          <div class="rev-auth">
-            <div class="rev-ava" aria-hidden="true">✨</div>
-            <div><strong>Nour K.</strong><span>Verified · Sidon</span></div>
-          </div>
-        </div>
-
-        <div class="rev-card" role="listitem">
-          <div class="rev-stars" aria-label="5 stars"><span>★★★★★</span></div>
-          <p class="rev-text" lang="ar" dir="rtl">"أفضل متجر جمال في لبنان! المنتجات طبيعية وتأثيرها واضح. التواصل عبر الواتساب كان سريعاً جداً والفريق محترف جداً."</p>
-          <div class="rev-auth">
-            <div class="rev-ava" aria-hidden="true">🌺</div>
-            <div><strong>ريم سعد</strong><span>موثقة · بيروت</span></div>
-          </div>
-        </div>
-
-        <div class="rev-card" role="listitem">
-          <div class="rev-stars" aria-label="5 stars"><span>★★★★★</span></div>
-          <p class="rev-text">"The Golden Eye Palette is stunning — pigmentation is incredible and the shades are so wearable every day. I've received so many compliments!"</p>
-          <div class="rev-auth">
-            <div class="rev-ava" aria-hidden="true">💎</div>
-            <div><strong>Maya R.</strong><span>Verified · Jounieh</span></div>
-          </div>
-        </div>
-
-        <div class="rev-card" role="listitem">
-          <div class="rev-stars" aria-label="5 stars"><span>★★★★★</span></div>
-          <p class="rev-text" lang="ar" dir="rtl">"منتجات راقية بأسعار معقولة جداً. السيروم غيّر بشرتي خلال أسبوعين. التغليف الفاخر جعل تجربة الاستقبال أجمل بكثير."</p>
-          <div class="rev-auth">
-            <div class="rev-ava" aria-hidden="true">🌷</div>
-            <div><strong>دانا عيد</strong><span>موثقة · صيدا</span></div>
-          </div>
-        </div>
-
+  <div class="reviews-slider-wrap reveal">
+    <div class="reviews-track-outer">
+      <div class="reviews-track" id="revTrack">
+        <div class="review-card"><div class="review-stars"><span>★★★★★</span></div><p class="review-text">"The Rose Glow Serum completely transformed my skin. After one month my complexion has never looked so luminous. Absolutely obsessed!"</p><div class="review-author"><div class="review-avatar">🌸</div><div><strong>Sarah M.</strong><span>Verified · Beirut</span></div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★★★★★</span></div><p class="review-text" lang="ar" dir="rtl">"السيروم رائع جداً! بشرتي أصبحت ناعمة ومتوهجة من أول أسبوع. التغليف فاخر والتوصيل سريع جداً. سأطلب مجدداً!"</p><div class="review-author"><div class="review-avatar">💫</div><div><strong>لارا حداد</strong><span>موثقة · طرابلس</span></div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★★★★★</span></div><p class="review-text">"Bought the Velvet Lip Gloss and Pearl Cream together — a match made in heaven. The quality is truly luxury level. 10/10!"</p><div class="review-author"><div class="review-avatar">✨</div><div><strong>Nour K.</strong><span>Verified · Sidon</span></div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★★★★★</span></div><p class="review-text" lang="ar" dir="rtl">"أفضل متجر جمال في لبنان! المنتجات طبيعية وتأثيرها واضح. التواصل عبر الواتساب سريع والفريق محترف."</p><div class="review-author"><div class="review-avatar">🌺</div><div><strong>ريم سعد</strong><span>موثقة · بيروت</span></div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★★★★★</span></div><p class="review-text">"The Golden Eye Palette is stunning — pigmentation incredible, shades so wearable. I've received so many compliments!"</p><div class="review-author"><div class="review-avatar">💎</div><div><strong>Maya R.</strong><span>Verified · Jounieh</span></div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★★★★★</span></div><p class="review-text" lang="ar" dir="rtl">"منتجات راقية بأسعار معقولة. السيروم غيّر بشرتي خلال أسبوعين. التغليف جعل تجربة الشراء أجمل بكثير."</p><div class="review-author"><div class="review-avatar">🌷</div><div><strong>دانا عيد</strong><span>موثقة · صيدا</span></div></div></div>
       </div>
     </div>
-    <div class="rev-ctrl" role="group" aria-label="Review navigation">
-      <button class="rev-btn" id="revPrev" aria-label="Previous reviews">←</button>
-      <button class="rev-btn" id="revNext" aria-label="Next reviews">→</button>
+    <div class="reviews-controls">
+      <button class="rev-ctrl-btn" id="revPrev" aria-label="Previous">←</button>
+      <div class="reviews-dots" id="revDots"></div>
+      <button class="rev-ctrl-btn" id="revNext" aria-label="Next">→</button>
     </div>
-    <div class="rev-dots" id="revDots" role="group" aria-label="Review page indicators"></div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      INSTAGRAM
-════════════════════════════════════════════════ -->
-<section class="sec sec-white" id="instagram" aria-label="Instagram gallery">
-  <div class="sec-head reveal">
-    <div class="sec-eye">Instagram</div>
-    <h2 class="sec-title" data-en="Follow Our Journey" data-ar="تابعي رحلتنا">Follow Our <em>Journey</em></h2>
-    <p class="sec-sub" data-en="@thebeautydrop — daily beauty inspiration, tutorials and behind-the-scenes." data-ar="@thebeautydrop — إلهام جمالي يومي وكواليس حصرية.">@thebeautydrop — daily beauty inspiration, tutorials and behind-the-scenes.</p>
+════════════════════════════════════════════════════ -->
+<section class="section-sm" id="instagram">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye">Instagram</div>
+      <h2 class="section-title" data-en="Follow Our Journey" data-ar="تابعي رحلتنا">Follow Our <em>Journey</em></h2>
+      <p class="section-sub">
+        <a href="https://instagram.com" target="_blank" rel="noopener" style="color:var(--purple);">@thebeautydrop</a>
+      </p>
+    </div>
   </div>
-  <div class="ig-grid reveal">
-    <div class="ig-item"><img src="https://i.imgur.com/u2XACcD.jpeg" alt="Beauty product showcase" loading="lazy"><div class="ig-ov" aria-hidden="true">📸</div></div>
-    <div class="ig-item"><img src="https://i.imgur.com/tVTdEvJ.jpeg" alt="Lip gloss collection" loading="lazy"><div class="ig-ov" aria-hidden="true">❤️</div></div>
-    <div class="ig-item"><img src="https://i.imgur.com/6W1FHNh.jpeg" alt="Foundation shades" loading="lazy"><div class="ig-ov" aria-hidden="true">✨</div></div>
-    <div class="ig-item"><img src="https://i.imgur.com/m3qcsx5.jpeg" alt="Pearl glow cream" loading="lazy"><div class="ig-ov" aria-hidden="true">💜</div></div>
-    <div class="ig-item"><img src="https://i.imgur.com/4qyJd5e.jpeg" alt="Eye palette" loading="lazy"><div class="ig-ov" aria-hidden="true">🌸</div></div>
-    <div class="ig-item"><img src="https://i.imgur.com/u2XACcD.jpeg" alt="Beauty essentials" loading="lazy"><div class="ig-ov" aria-hidden="true">💄</div></div>
-  </div>
-  <div class="ig-handle" style="max-width:1240px;margin:26px auto 0;">
-    Follow us <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">@thebeautydrop</a> ✨
+  <div class="ig-strip reveal">
+    <div class="ig-item"><img src="https://i.imgur.com/u2XACcD.jpeg" alt="" loading="lazy"><div class="ig-ov">📸</div></div>
+    <div class="ig-item"><img src="https://i.imgur.com/tVTdEvJ.jpeg" alt="" loading="lazy"><div class="ig-ov">❤️</div></div>
+    <div class="ig-item"><img src="https://i.imgur.com/6W1FHNh.jpeg" alt="" loading="lazy"><div class="ig-ov">✨</div></div>
+    <div class="ig-item"><img src="https://i.imgur.com/m3qcsx5.jpeg" alt="" loading="lazy"><div class="ig-ov">💜</div></div>
+    <div class="ig-item"><img src="https://i.imgur.com/4qyJd5e.jpeg" alt="" loading="lazy"><div class="ig-ov">🌸</div></div>
+    <div class="ig-item"><img src="https://i.imgur.com/u2XACcD.jpeg" alt="" loading="lazy"><div class="ig-ov">💄</div></div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      NEWSLETTER
-════════════════════════════════════════════════ -->
-<section class="sec sec-alt nl-pos" aria-label="Newsletter signup">
-  <div class="nl-glow" aria-hidden="true"></div>
-  <div class="nl-box reveal">
-    <div class="sec-eye" data-en="Stay in the Loop" data-ar="ابقي على اطلاع">Stay in the Loop</div>
-    <h2 class="sec-title" data-en="Join The Beauty Circle" data-ar="انضمي إلى دائرة الجمال">Join The <em>Beauty Circle</em></h2>
-    <p class="sec-sub" data-en="Subscribe for exclusive offers, new arrivals and beauty secrets — delivered to your inbox." data-ar="اشتركي للحصول على عروض حصرية ووصولات جديدة وأسرار جمالية — في بريدك الإلكتروني.">Subscribe for exclusive offers, new arrivals and beauty secrets — delivered to your inbox.</p>
-    <form class="nl-form" onsubmit="nlSubmit(event)" novalidate>
-      <label for="nlEmail" class="sr-only">Email address</label>
-      <input type="email" class="nl-input" id="nlEmail" placeholder="Your email address…" required>
-      <button type="submit" class="btn-fill" data-en="Subscribe ✦" data-ar="اشتركي ✦">Subscribe ✦</button>
-    </form>
-    <p class="nl-hint" data-en="No spam, ever. Unsubscribe anytime." data-ar="لا رسائل مزعجة أبدًا. إلغاء الاشتراك في أي وقت.">No spam, ever. Unsubscribe anytime.</p>
+════════════════════════════════════════════════════ -->
+<section class="section newsletter-section">
+  <div class="container">
+    <div class="newsletter-box reveal">
+      <div class="section-eye" data-en="Stay Updated" data-ar="ابقي على اطلاع">Stay Updated</div>
+      <h2 class="section-title" data-en="Join The Beauty Circle" data-ar="انضمي إلى دائرة الجمال">Join The <em>Beauty Circle</em></h2>
+      <p class="section-sub" data-en="Subscribe for exclusive offers, new arrivals and beauty secrets." data-ar="اشتركي للحصول على عروض حصرية ووصولات جديدة وأسرار جمالية.">Subscribe for exclusive offers, new arrivals and beauty secrets.</p>
+      <form class="nl-form" onsubmit="nlSubmit(event)">
+        <input class="nl-input" type="email" id="nlEmail" placeholder="Your email address…" required>
+        <button type="submit" class="btn-primary" data-en="Subscribe" data-ar="اشتركي">Subscribe ✦</button>
+      </form>
+      <p class="nl-hint" data-en="No spam. Unsubscribe anytime." data-ar="لا رسائل مزعجة. إلغاء الاشتراك في أي وقت.">No spam. Unsubscribe anytime.</p>
+    </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      CONTACT
-════════════════════════════════════════════════ -->
-<section class="sec sec-white" id="contact" aria-label="Contact us">
-  <div class="contact-inner">
-    <div class="contact-lft reveal">
-      <div class="sec-eye" data-en="Get In Touch" data-ar="تواصلي معنا">Get In Touch</div>
-      <h2 data-en="We'd Love To Hear From You" data-ar="يسعدنا سماعك">We'd Love To <em>Hear From You</em></h2>
-      <p data-en="Have a question about a product, want to track your order, or just want to say hello — we're always here." data-ar="هل لديك سؤال حول منتج أو تريدين تتبع طلبك أو تريدين التحية فقط — نحن دائمًا هنا.">Have a question about a product, want to track your order, or just want to say hello — we're always here.</p>
-      <div class="c-methods">
-        <a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer" class="c-method">
-          <div class="c-icon" aria-hidden="true">💬</div>
-          <div class="c-txt">
-            <strong data-en="WhatsApp" data-ar="واتساب">WhatsApp</strong>
-            <span>+961 79 112 062</span>
-          </div>
+════════════════════════════════════════════════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye" data-en="Get In Touch" data-ar="تواصلي معنا">Get In Touch</div>
+      <h2 class="section-title" data-en="We're Here For You" data-ar="نحن هنا من أجلك">We're Here <em>For You</em></h2>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal-l">
+      <h2 data-en="Let's Talk Beauty" data-ar="لنتحدث عن الجمال" style="font-family:var(--serif);font-size:38px;font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:16px;">Let's Talk <em style="font-style:italic;color:var(--purple);">Beauty</em></h2>
+      <p style="font-size:15px;color:var(--ink-3);line-height:1.8;font-weight:300;margin-bottom:36px;" data-en="Questions about a product, tracking your order, or just saying hi — we're always here for you." data-ar="أسئلة عن منتج، تتبع طلبك، أو مجرد تحية — نحن دائمًا هنا لك.">Questions about a product, tracking your order, or just saying hi — we're always here for you.</p>
+      <div class="contact-links">
+        <a href="https://wa.me/96179112062" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">💬</div>
+          <div class="contact-link-txt"><strong data-en="WhatsApp" data-ar="واتساب">WhatsApp</strong><span>+961 79 112 062</span></div>
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="c-method">
-          <div class="c-icon" aria-hidden="true">📸</div>
-          <div class="c-txt">
-            <strong data-en="Instagram" data-ar="انستغرام">Instagram</strong>
-            <span>@thebeautydrop</span>
-          </div>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">📸</div>
+          <div class="contact-link-txt"><strong data-en="Instagram" data-ar="انستغرام">Instagram</strong><span>@thebeautydrop</span></div>
         </a>
-        <a href="mailto:hello@thebeautydrop.com" class="c-method">
-          <div class="c-icon" aria-hidden="true">✉️</div>
-          <div class="c-txt">
-            <strong data-en="Email" data-ar="البريد الإلكتروني">Email</strong>
-            <span>hello@thebeautydrop.com</span>
-          </div>
+        <a href="mailto:hello@thebeautydrop.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div class="contact-link-txt"><strong data-en="Email" data-ar="البريد الإلكتروني">Email</strong><span>hello@thebeautydrop.com</span></div>
         </a>
       </div>
     </div>
-
-    <div class="contact-rgt reveal d2">
+    <div class="contact-card reveal-r">
       <h3 data-en="Business Hours" data-ar="ساعات العمل">Business Hours</h3>
       <div class="hours">
-        <div class="hr-row">
-          <span class="day" data-en="Monday – Friday" data-ar="الاثنين – الجمعة">Monday – Friday</span>
-          <span class="time">9 AM – 8 PM</span>
-        </div>
-        <div class="hr-row">
-          <span class="day" data-en="Saturday" data-ar="السبت">Saturday</span>
-          <span class="time">10 AM – 6 PM</span>
-        </div>
-        <div class="hr-row">
-          <span class="day" data-en="Sunday" data-ar="الأحد">Sunday</span>
-          <span class="time" data-en="By Appointment" data-ar="بالموعد المسبق">By Appointment</span>
-        </div>
-        <div class="hr-row">
-          <span class="day">📍 <span data-en="Location" data-ar="الموقع">Location</span></span>
-          <span class="time" data-en="Beirut, Lebanon" data-ar="بيروت، لبنان">Beirut, Lebanon</span>
-        </div>
-      </div>
-      <div class="soc-sec">
-        <h4 data-en="Follow Us" data-ar="تابعينا">Follow Us</h4>
-        <div class="soc-row">
-          <a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer" class="soc-btn" aria-label="WhatsApp">💬</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="soc-btn" aria-label="Instagram">📸</a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="soc-btn" aria-label="TikTok">🎵</a>
-          <a href="mailto:hello@thebeautydrop.com" class="soc-btn" aria-label="Email">✉️</a>
-        </div>
+        <div class="hour-row"><span class="day" data-en="Monday – Friday" data-ar="الاثنين – الجمعة">Monday – Friday</span><span class="time">9 AM – 8 PM</span></div>
+        <div class="hour-row"><span class="day" data-en="Saturday" data-ar="السبت">Saturday</span><span class="time">10 AM – 6 PM</span></div>
+        <div class="hour-row"><span class="day" data-en="Sunday" data-ar="الأحد">Sunday</span><span class="time" data-en="By Appointment" data-ar="بالموعد">By Appointment</span></div>
+        <div class="hour-row"><span class="day">📍 <span data-en="Location" data-ar="الموقع">Location</span></span><span class="time" data-en="Beirut, Lebanon" data-ar="بيروت، لبنان">Beirut, Lebanon</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      FOOTER
-════════════════════════════════════════════════ -->
-<footer role="contentinfo">
-  <div class="foot-top">
-    <div class="foot-brand">
-      <div class="foot-logo">
-        <img src="https://i.imgur.com/ZA3CGyV.jpeg" alt="The Beauty Drop" onerror="this.style.display='none'">
-      </div>
+════════════════════════════════════════════════════ -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-about">
+      <img class="foot-logo-img" src="https://i.imgur.com/ZA3CGyV.jpeg" alt="The Beauty Drop" onerror="this.style.display='none'">
       <p data-en="Luxury beauty essentials designed for everyday confidence. Crafted with care, delivered with love." data-ar="أساسيات الجمال الفاخرة مصممة لثقة يومية. مصنوعة بعناية، مُسلَّمة بحب.">Luxury beauty essentials designed for everyday confidence. Crafted with care, delivered with love.</p>
-      <div class="foot-soc">
-        <a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
-        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">🎵</a>
-        <a href="mailto:hello@thebeautydrop.com" aria-label="Email">✉️</a>
+      <div class="foot-socials">
+        <a href="https://wa.me/96179112062" target="_blank" rel="noopener" class="foot-soc-btn" aria-label="WhatsApp">💬</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="foot-soc-btn" aria-label="Instagram">📸</a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" class="foot-soc-btn" aria-label="TikTok">🎵</a>
+        <a href="mailto:hello@thebeautydrop.com" class="foot-soc-btn" aria-label="Email">✉️</a>
       </div>
     </div>
     <div class="foot-col">
@@ -1246,16 +1167,15 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
         <li><a href="#shop" data-en="Best Sellers" data-ar="الأكثر مبيعاً">Best Sellers</a></li>
         <li><a href="#collections" data-en="New Arrivals" data-ar="وصولات جديدة">New Arrivals</a></li>
         <li><a href="#collections" data-en="Gift Sets" data-ar="طقم هدايا">Gift Sets</a></li>
-        <li><a href="#promo" data-en="Sale" data-ar="تخفيضات">Sale</a></li>
       </ul>
     </div>
     <div class="foot-col">
-      <h4 data-en="Customer Service" data-ar="خدمة العملاء">Customer Service</h4>
+      <h4 data-en="Help" data-ar="المساعدة">Help</h4>
       <ul class="foot-links">
-        <li><a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer" data-en="Track Order" data-ar="تتبع الطلب">Track Order</a></li>
-        <li><a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer" data-en="Returns" data-ar="الإرجاع">Returns</a></li>
-        <li><a href="https://wa.me/96179112062" target="_blank" rel="noopener noreferrer" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</a></li>
-        <li><a href="#contact" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a></li>
+        <li><a href="https://wa.me/96179112062" target="_blank" rel="noopener" data-en="Track Order" data-ar="تتبع الطلب">Track Order</a></li>
+        <li><a href="https://wa.me/96179112062" target="_blank" rel="noopener" data-en="Returns" data-ar="الإرجاع">Returns</a></li>
+        <li><a href="https://wa.me/96179112062" target="_blank" rel="noopener" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</a></li>
+        <li><a href="#contact" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
       </ul>
     </div>
     <div class="foot-col">
@@ -1269,398 +1189,491 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     </div>
   </div>
   <div class="foot-bottom">
-    <p>© 2025 The Beauty Drop · All Rights Reserved · Made with <span style="color:rgba(201,164,255,.7)">♡</span> in Lebanon</p>
+    <p>© 2025 The Beauty Drop · All Rights Reserved · Made with <span style="color:rgba(201,164,255,0.7)">♡</span> in Lebanon</p>
     <div class="foot-badges">
-      <span class="fbadge" data-en="WhatsApp Orders" data-ar="طلبات واتساب">WhatsApp Orders</span>
-      <span class="fbadge" data-en="Cash on Delivery" data-ar="الدفع عند الاستلام">Cash on Delivery</span>
-      <span class="fbadge" data-en="Lebanon Wide" data-ar="جميع أنحاء لبنان">Lebanon Wide</span>
+      <span class="foot-badge" data-en="WhatsApp Orders" data-ar="طلبات واتساب">WhatsApp Orders</span>
+      <span class="foot-badge" data-en="Cash on Delivery" data-ar="الدفع عند الاستلام">Cash on Delivery</span>
+      <span class="foot-badge" data-en="Lebanon Wide" data-ar="جميع أنحاء لبنان">Lebanon Wide</span>
     </div>
   </div>
 </footer>
 
-<!-- ════════════════════════════════════════════════
+<!-- ════════════════════════════════════════════════════
      JAVASCRIPT
-════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════ -->
 <script>
-(function() {
+(function () {
   'use strict';
 
+  /* ── PRODUCT DATA ── */
+  var PRODUCTS = [
+    { id: 1, name: 'Rose Glow Serum', nameAr: 'سيروم وردة اللمعان', desc: 'Hydrating rose extract serum for radiant, dewy skin', descAr: 'سيروم مرطب بمستخلص الورد لبشرة متوهجة', price: 29, oldPrice: 40, img: 'https://i.imgur.com/u2XACcD.jpeg', badge: 'Best Seller', badgeAr: 'الأكثر مبيعاً', rating: 5, ratingCount: 248, category: 'skincare' },
+    { id: 2, name: 'Velvet Lip Gloss', nameAr: 'غلوس الشفاه المخملي', desc: 'High-shine lip color with plumping formula', descAr: 'لون شفاه عالي اللمعان بفورمولا مكبّرة', price: 22, oldPrice: 32, img: 'https://i.imgur.com/tVTdEvJ.jpeg', badge: 'New', badgeAr: 'جديد', rating: 5, ratingCount: 183, category: 'makeup' },
+    { id: 3, name: 'Silk Foundation', nameAr: 'أساس حريري', desc: 'Featherlight coverage that melts into skin', descAr: 'تغطية خفيفة تذوب في البشرة', price: 45, oldPrice: 60, img: 'https://i.imgur.com/6W1FHNh.jpeg', badge: 'Trending', badgeAr: 'رائج', rating: 5, ratingCount: 312, category: 'makeup' },
+    { id: 4, name: 'Pearl Glow Cream', nameAr: 'كريم لؤلؤة اللمعان', desc: 'Deep nourishing cream with pearl extract & vitamin C', descAr: 'كريم مغذٍّ عميق بمستخلص اللؤلؤ وفيتامين C', price: 55, oldPrice: 75, img: 'https://i.imgur.com/m3qcsx5.jpeg', badge: 'Luxury', badgeAr: 'فاخر', rating: 5, ratingCount: 157, category: 'skincare' },
+    { id: 5, name: 'Golden Eye Palette', nameAr: 'باليت العيون الذهبي', desc: '12 artisanal shades, warm golds to cool mauves', descAr: '12 درجة حرفية من الذهبي إلى الأوف وايت', price: 65, oldPrice: 89, img: 'https://i.imgur.com/4qyJd5e.jpeg', badge: 'Must Have', badgeAr: 'لا غنى عنه', rating: 5, ratingCount: 421, category: 'makeup' },
+    { id: 6, name: 'Body Glow Oil', nameAr: 'زيت لمعان الجسم', desc: 'Silky shimmer body oil for luminous skin', descAr: 'زيت جسم ناعم ذو لمعان لبشرة متألقة', price: 38, oldPrice: 52, img: 'https://i.imgur.com/u2XACcD.jpeg', badge: 'Fan Fave', badgeAr: 'محبوب', rating: 5, ratingCount: 195, category: 'body' },
+    { id: 7, name: 'Luxe Gift Set', nameAr: 'طقم هدايا فاخر', desc: 'Curated set of our 4 bestselling essentials', descAr: 'مجموعة مختارة من أفضل 4 أساسيات لدينا', price: 99, oldPrice: 140, img: 'https://i.imgur.com/tVTdEvJ.jpeg', badge: 'Value Set', badgeAr: 'قيمة عالية', rating: 5, ratingCount: 88, category: 'sets' },
+    { id: 8, name: 'Glow Toner Mist', nameAr: 'مرذاذ التونر المضيء', desc: 'Refreshing facial mist with hyaluronic acid', descAr: 'رذاذ وجه منعش بحمض الهيالورونيك', price: 26, oldPrice: 36, img: 'https://i.imgur.com/6W1FHNh.jpeg', badge: 'New', badgeAr: 'جديد', rating: 5, ratingCount: 142, category: 'skincare' },
+  ];
+
+  /* ── CART STATE ── */
+  var cart = [];
+  var currentFilter = 'all';
+  var currentLang = 'en';
+  var isAr = false;
+
+  /* ── HELPERS ── */
+  function $(id) { return document.getElementById(id); }
+  function qs(sel) { return document.querySelector(sel); }
+  function qsa(sel) { return document.querySelectorAll(sel); }
+
+  var toastTimer = null;
+  window.toast = function (msg, icon) {
+    var t = $('toast'), tx = $('toastMsg'), ti = $('toastIcon');
+    if (!t) return;
+    if (tx) tx.textContent = msg;
+    if (ti) ti.textContent = icon || '✨';
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 3200);
+  };
+
   /* ── LOADER ── */
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var l = document.getElementById('loader');
-      if (l) l.classList.add('done');
-    }, 2400);
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var l = $('loader');
+      if (l) l.classList.add('out');
+    }, 2500);
   });
 
-  /* ── CURSOR ── */
-  var cDot = document.getElementById('cDot');
-  var cRing = document.getElementById('cRing');
-  var mx = 0, my = 0, rx = 0, ry = 0;
-  var hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-  if (hasFinePointer && cDot && cRing) {
-    document.body.style.cursor = 'none';
-    document.addEventListener('mousemove', function(e) {
-      mx = e.clientX; my = e.clientY;
-      cDot.style.left = mx + 'px';
-      cDot.style.top = my + 'px';
-    });
-    (function tick() {
-      rx += (mx - rx) * 0.13;
-      ry += (my - ry) * 0.13;
-      cRing.style.left = rx + 'px';
-      cRing.style.top = ry + 'px';
-      requestAnimationFrame(tick);
-    })();
-    document.querySelectorAll('a, button, .prod-card, .coll-card, .ig-item, .feat-card, [role="button"]').forEach(function(el) {
-      el.addEventListener('mouseenter', function() { cRing.classList.add('grow'); });
-      el.addEventListener('mouseleave', function() { cRing.classList.remove('grow'); });
-    });
-  } else {
-    if (cDot) cDot.style.display = 'none';
-    if (cRing) cRing.style.display = 'none';
-  }
-
-  /* ── PETALS ── */
-  var petalLayer = document.getElementById('petalLayer');
-  if (petalLayer) {
-    var emojis = ['🌸','✿','🌺','🌷','💮'];
-    function makePetal() {
-      var el = document.createElement('div');
-      el.className = 'petal';
-      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      el.style.left = (Math.random() * 100) + '%';
-      el.style.fontSize = (14 + Math.random() * 12) + 'px';
-      el.style.animationDuration = (12 + Math.random() * 14) + 's';
-      el.style.animationDelay = (Math.random() * -20) + 's';
-      petalLayer.appendChild(el);
-      setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 28000);
-    }
-    for (var i = 0; i < 8; i++) makePetal();
-    setInterval(makePetal, 2000);
-  }
-
   /* ── NAVBAR SCROLL ── */
-  window.addEventListener('scroll', function() {
-    var nb = document.getElementById('navbar');
-    if (nb) nb.classList.toggle('scrolled', window.scrollY > 30);
-    var btt = document.getElementById('btt');
-    if (btt) btt.classList.toggle('vis', window.scrollY > 380);
+  window.addEventListener('scroll', function () {
+    var nb = $('navbar');
+    if (nb) nb.classList.toggle('scrolled', window.scrollY > 20);
+    var btt = $('btt');
+    if (btt) btt.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
 
   /* ── BACK TO TOP ── */
-  var bttBtn = document.getElementById('btt');
-  if (bttBtn) {
-    bttBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+  var bttEl = $('btt');
+  if (bttEl) bttEl.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
   /* ── HAMBURGER ── */
-  var menuOpen = false;
-  var hamburger = document.getElementById('hamburger');
-  var mobMenu = document.getElementById('mobMenu');
-  var mobClose = document.getElementById('mobClose');
+  var mobOpen = false;
+  var hamburgerEl = $('hamburger');
+  var mobNavEl = $('mobNav');
+  var mobCloseEl = $('mobNavClose');
 
-  function openMenu() {
-    menuOpen = true;
-    if (mobMenu) mobMenu.classList.add('open');
-    if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
-    var spans = hamburger ? hamburger.querySelectorAll('span') : [];
-    if (spans[0]) spans[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)';
-    if (spans[1]) spans[1].style.opacity = '0';
-    if (spans[2]) spans[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)';
+  function openMob() {
+    mobOpen = true;
+    if (mobNavEl) mobNavEl.classList.add('open');
+    if (hamburgerEl) hamburgerEl.setAttribute('aria-expanded', 'true');
+    var sp = hamburgerEl ? hamburgerEl.querySelectorAll('span') : [];
+    if (sp[0]) sp[0].style.cssText = 'transform:rotate(45deg) translate(4.5px,4.5px)';
+    if (sp[1]) sp[1].style.opacity = '0';
+    if (sp[2]) sp[2].style.cssText = 'transform:rotate(-45deg) translate(4.5px,-4.5px)';
   }
-
-  window.closeMenu = function() {
-    menuOpen = false;
-    if (mobMenu) mobMenu.classList.remove('open');
-    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
-    var spans = hamburger ? hamburger.querySelectorAll('span') : [];
-    spans.forEach(function(s) { s.style.cssText = ''; });
+  window.closeMob = function () {
+    mobOpen = false;
+    if (mobNavEl) mobNavEl.classList.remove('open');
+    if (hamburgerEl) { hamburgerEl.setAttribute('aria-expanded', 'false'); hamburgerEl.querySelectorAll('span').forEach(function (s) { s.style.cssText = ''; }); }
   };
-
-  if (hamburger) hamburger.addEventListener('click', function() { menuOpen ? closeMenu() : openMenu(); });
-  if (mobClose) mobClose.addEventListener('click', closeMenu);
+  if (hamburgerEl) hamburgerEl.addEventListener('click', function () { mobOpen ? closeMob() : openMob(); });
+  if (mobCloseEl) mobCloseEl.addEventListener('click', closeMob);
 
   /* ── SEARCH ── */
-  var srchOv = document.getElementById('srch-ov');
-  var srchBtn = document.getElementById('searchBtn');
-  var srchClose = document.getElementById('srchClose');
-  var srchInput = document.getElementById('srchInput');
+  var searchOvEl = $('searchOv');
+  var srchInputEl = $('srchInput');
+  var srchCloseEl = $('srchClose');
+  var searchToggleEl = $('searchToggle');
 
-  if (srchBtn) {
-    srchBtn.addEventListener('click', function() {
-      if (srchOv) srchOv.classList.add('open');
-      setTimeout(function() { if (srchInput) srchInput.focus(); }, 200);
-    });
-  }
-  if (srchClose) {
-    srchClose.addEventListener('click', function() {
-      if (srchOv) srchOv.classList.remove('open');
-    });
-  }
-  document.addEventListener('keydown', function(e) {
+  if (searchToggleEl) searchToggleEl.addEventListener('click', function () {
+    if (searchOvEl) searchOvEl.classList.add('open');
+    setTimeout(function () { if (srchInputEl) srchInputEl.focus(); }, 200);
+  });
+  if (srchCloseEl) srchCloseEl.addEventListener('click', function () { if (searchOvEl) searchOvEl.classList.remove('open'); });
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-      if (srchOv) srchOv.classList.remove('open');
-      closeMenu();
+      if (searchOvEl) searchOvEl.classList.remove('open');
+      closeMob();
+      closeCart();
     }
   });
 
-  /* ── TOAST ── */
-  var toastTimer = null;
-  window.showToast = function(msg) {
-    var t = document.getElementById('toast');
-    var tx = document.getElementById('toastTxt');
-    if (!t || !tx) return;
-    tx.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3500);
+  /* ── CART ── */
+  function openCart() {
+    var overlay = $('cartOverlay'), drawer = $('cartDrawer');
+    if (overlay) overlay.classList.add('open');
+    if (drawer) drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  window.closeCart = function () {
+    var overlay = $('cartOverlay'), drawer = $('cartDrawer');
+    if (overlay) overlay.classList.remove('open');
+    if (drawer) drawer.classList.remove('open');
+    document.body.style.overflow = '';
   };
 
-  /* ── WHATSAPP ORDER ── */
-  window.doOrder = function(name, price, img) {
-    var isAr = document.body.classList.contains('ar');
+  var cartToggleEl = $('cartToggle');
+  if (cartToggleEl) cartToggleEl.addEventListener('click', openCart);
+
+  function getCartTotal() {
+    return cart.reduce(function (sum, item) { return sum + item.price * item.qty; }, 0);
+  }
+
+  function updateCartCount() {
+    var total = cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
+    var cc = $('cartCount');
+    if (cc) {
+      cc.textContent = total;
+      cc.classList.add('bump');
+      setTimeout(function () { cc.classList.remove('bump'); }, 350);
+    }
+  }
+
+  function renderCart() {
+    var body = $('cartBody');
+    var foot = $('cartFoot');
+    var sub = $('cartSub');
+    if (!body) return;
+
+    var totalItems = cart.reduce(function (s, i) { return s + i.qty; }, 0);
+    if (sub) sub.textContent = totalItems + (isAr ? ' منتجات' : (totalItems === 1 ? ' item' : ' items'));
+
+    if (cart.length === 0) {
+      body.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><h3>' + (isAr ? 'سلتك فارغة' : 'Your cart is empty') + '</h3><p>' + (isAr ? 'أضيفي شيئاً جميلاً للبدء.' : 'Add something beautiful to get started.') + '</p></div>';
+      if (foot) foot.style.display = 'none';
+      return;
+    }
+
+    if (foot) foot.style.display = 'block';
+    var html = '';
+    cart.forEach(function (item) {
+      var displayName = isAr ? item.nameAr : item.name;
+      html += '<div class="cart-item" id="ci-' + item.id + '">';
+      html += '<div class="cart-item-img"><img src="' + item.img + '" alt="' + displayName + '" onerror="this.parentElement.style.background=\'var(--bg-3)\'"></div>';
+      html += '<div>';
+      html += '<div class="cart-item-name">' + displayName + '</div>';
+      html += '<div class="cart-item-price">$' + (item.price * item.qty) + '</div>';
+      html += '<div class="qty-ctrl">';
+      html += '<button class="qty-btn" onclick="changeQty(' + item.id + ',-1)" aria-label="Decrease">−</button>';
+      html += '<span class="qty-num">' + item.qty + '</span>';
+      html += '<button class="qty-btn" onclick="changeQty(' + item.id + ',1)" aria-label="Increase">+</button>';
+      html += '</div>';
+      html += '</div>';
+      html += '<button class="cart-item-remove" onclick="removeFromCart(' + item.id + ')" aria-label="Remove">×</button>';
+      html += '</div>';
+    });
+    body.innerHTML = html;
+
+    var total = getCartTotal();
+    var subtotalEl = $('cartSubtotal');
+    var totalEl = $('cartTotal');
+    if (subtotalEl) subtotalEl.textContent = '$' + total;
+    if (totalEl) totalEl.textContent = '$' + total;
+  }
+
+  window.addToCart = function (id) {
+    var product = PRODUCTS.find(function (p) { return p.id === id; });
+    if (!product) return;
+    var existing = cart.find(function (c) { return c.id === id; });
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ id: product.id, name: product.name, nameAr: product.nameAr, price: product.price, img: product.img, qty: 1 });
+    }
+    updateCartCount();
+    renderCart();
+    openCart();
+    toast(isAr ? ('✓ أُضيف ' + product.nameAr) : ('✓ Added ' + product.name), '🛍️');
+  };
+
+  window.changeQty = function (id, delta) {
+    var item = cart.find(function (c) { return c.id === id; });
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) { removeFromCart(id); return; }
+    updateCartCount();
+    renderCart();
+  };
+
+  window.removeFromCart = function (id) {
+    cart = cart.filter(function (c) { return c.id !== id; });
+    updateCartCount();
+    renderCart();
+  };
+
+  /* ── WHATSAPP CHECKOUT ── */
+  window.checkoutWhatsApp = function () {
+    if (cart.length === 0) return;
+    var total = getCartTotal();
     var msg;
     if (isAr) {
-      msg = 'مرحباً،\n\nأرغب بطلب هذا المنتج.\n\nاسم المنتج:\n' + name + '\n\nالسعر:\n' + price + '\n\nرابط صورة المنتج:\n' + img + '\n\nيرجى إعلامي إذا كان متوفراً.';
+      msg = 'مرحباً، أرغب بطلب المنتجات التالية:\n\n';
+      cart.forEach(function (item) {
+        msg += '• ' + item.nameAr + ' × ' + item.qty + ' = $' + (item.price * item.qty) + '\n';
+      });
+      msg += '\n──────────────────\n';
+      msg += 'المجموع: $' + total + '\n';
+      msg += 'التوصيل: مجاني 🚀\n';
+      msg += '──────────────────\n';
+      msg += 'يرجى تأكيد التوفر والتوصيل. شكراً!';
     } else {
-      msg = 'Hello,\n\nI would like to order this product.\n\nProduct:\n' + name + '\n\nPrice:\n' + price + '\n\nProduct Image:\n' + img + '\n\nPlease let me know if it is available.';
+      msg = 'Hello! I would like to order the following:\n\n';
+      cart.forEach(function (item) {
+        msg += '• ' + item.name + ' × ' + item.qty + ' = $' + (item.price * item.qty) + '\n';
+      });
+      msg += '\n──────────────────\n';
+      msg += 'Subtotal: $' + total + '\n';
+      msg += 'Shipping: Free 🚀\n';
+      msg += 'Total: $' + total + '\n';
+      msg += '──────────────────\n';
+      msg += 'Please confirm availability and delivery. Thank you!';
     }
     window.open('https://wa.me/96179112062?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
   };
 
+  /* ── RENDER PRODUCTS ── */
+  function starHTML(r) {
+    var s = '';
+    for (var i = 0; i < r; i++) s += '★';
+    return s;
+  }
+
+  function renderProducts(filter) {
+    var grid = $('productsGrid');
+    if (!grid) return;
+    var filtered = filter === 'all' ? PRODUCTS : PRODUCTS.filter(function (p) { return p.category === filter; });
+    grid.innerHTML = '';
+    filtered.forEach(function (p, i) {
+      var name = isAr ? p.nameAr : p.name;
+      var desc = isAr ? p.descAr : p.desc;
+      var badge = isAr ? p.badgeAr : p.badge;
+      var div = document.createElement('div');
+      div.className = 'product-card reveal delay-' + Math.min(i + 1, 5);
+      div.innerHTML =
+        '<div class="card-img-wrap">' +
+          '<span class="card-badge">' + badge + '</span>' +
+          '<button class="card-wishlist" aria-label="Wishlist" onclick="wishToggle(this)">♡</button>' +
+          '<img src="' + p.img + '" alt="' + name + '" loading="lazy" onerror="this.parentElement.style.background=\'var(--bg-3)\'">' +
+          '<div class="card-img-overlay"></div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<div class="card-stars"><span>' + starHTML(p.rating) + '</span><span class="count">(' + p.ratingCount + ')</span></div>' +
+          '<div class="card-name">' + name + '</div>' +
+          '<div class="card-desc">' + desc + '</div>' +
+          '<div class="card-footer">' +
+            '<div class="card-price">$' + p.price + ' <s>$' + p.oldPrice + '</s></div>' +
+            '<button class="btn-add-cart" onclick="addToCart(' + p.id + ')">' +
+              '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6" style="stroke:#fff;stroke-width:1.8px;fill:none"/><path d="M16 10a4 4 0 0 1-8 0" style="stroke:#fff;stroke-width:1.8px;fill:none"/></svg>' +
+              (isAr ? 'أضيفي' : 'Add to Cart') +
+            '</button>' +
+          '</div>' +
+        '</div>';
+      grid.appendChild(div);
+    });
+    /* re-observe new cards */
+    grid.querySelectorAll('.reveal').forEach(function (el) { revObs.observe(el); });
+  }
+
+  window.filterProducts = function (filter, btn) {
+    currentFilter = filter;
+    qsa('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    renderProducts(filter);
+  };
+
+  window.filterByCategory = function (cat) {
+    var shopEl = document.getElementById('shop');
+    if (shopEl) shopEl.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(function () {
+      var btn = null;
+      qsa('.filter-btn').forEach(function (b) {
+        var en = b.getAttribute('data-en') || b.textContent;
+        if (en.toLowerCase() === cat.toLowerCase() || b.getAttribute('data-ar') === cat) btn = b;
+      });
+      filterProducts(cat, btn);
+    }, 400);
+  };
+
   /* ── WISHLIST ── */
-  window.wishToggle = function(btn) {
-    var isOn = btn.classList.toggle('on');
-    btn.textContent = isOn ? '♥' : '♡';
-    btn.setAttribute('aria-label', isOn ? 'Remove from wishlist' : 'Add to wishlist');
-    showToast(isOn ? '💜 Added to wishlist!' : '💔 Removed from wishlist');
+  window.wishToggle = function (btn) {
+    var on = btn.classList.toggle('on');
+    btn.textContent = on ? '♥' : '♡';
+    toast(on ? (isAr ? 'أُضيف للمفضلة 💜' : 'Added to wishlist 💜') : (isAr ? 'أُزيل من المفضلة' : 'Removed from wishlist'), on ? '💜' : '🤍');
   };
 
   /* ── NEWSLETTER ── */
-  window.nlSubmit = function(e) {
+  window.nlSubmit = function (e) {
     e.preventDefault();
-    var em = document.getElementById('nlEmail');
+    var em = $('nlEmail');
     if (em) {
-      showToast('💌 Welcome! ' + em.value + ' is now subscribed.');
+      toast(isAr ? ('شكراً! ' + em.value + ' مُشتركة الآن 💌') : ('Welcome! ' + em.value + ' subscribed 💌'), '💌');
       e.target.reset();
     }
   };
 
-  /* ── LANGUAGE SWITCH ── */
-  var currentLang = 'en';
-  window.setLang = function(lang) {
+  /* ── LANGUAGE ── */
+  window.setLang = function (lang) {
     currentLang = lang;
-    var isAr = lang === 'ar';
+    isAr = lang === 'ar';
     document.body.classList.toggle('ar', isAr);
     document.documentElement.setAttribute('lang', lang);
     document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+    var lEN = $('lEN'), lAR = $('lAR');
+    if (lEN) { lEN.classList.toggle('active', !isAr); lEN.setAttribute('aria-pressed', String(!isAr)); }
+    if (lAR) { lAR.classList.toggle('active', isAr); lAR.setAttribute('aria-pressed', String(isAr)); }
 
-    var lEN = document.getElementById('lEN');
-    var lAR = document.getElementById('lAR');
-    if (lEN) { lEN.classList.toggle('on', !isAr); lEN.setAttribute('aria-pressed', String(!isAr)); }
-    if (lAR) { lAR.classList.toggle('on', isAr); lAR.setAttribute('aria-pressed', String(isAr)); }
-
-    document.querySelectorAll('[data-en][data-ar]').forEach(function(el) {
-      var txt = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
-      if (txt !== null) el.textContent = txt;
+    qsa('[data-en][data-ar]').forEach(function (el) {
+      el.textContent = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
     });
 
-    /* hero specific strings */
-    var map = {
-      heroTag:  isAr ? 'أساسيات الجمال الفاخرة' : 'Luxury Beauty Essentials',
-      heroThe:  isAr ? '' : 'The',
+    /* hero */
+    var maps = {
+      heroEye: isAr ? 'أساسيات الجمال الفاخرة' : 'Luxury Beauty Essentials',
+      heroThe: isAr ? '' : 'The',
       heroMain: isAr ? 'بيوتي دروب' : 'BEAUTY DROP',
-      heroEm:   isAr ? 'مجموعة 2025' : 'Collection 2025',
-      heroSub:  isAr ? 'أساسيات جمال فاخرة مصممة لثقة يومية — مُعدّة للمرأة العصرية التي تستحق الأفضل فقط.' : 'Luxury beauty essentials designed for everyday confidence — curated for the modern woman who deserves only the finest.',
+      heroEm: isAr ? 'مجموعة 2025' : 'Collection 2025',
+      heroSub: isAr ? 'أساسيات جمال فاخرة مصممة لثقة يومية. مُعدّة للمرأة التي تستحق الأفضل فقط.' : 'Luxury beauty essentials designed for everyday confidence. Curated for the woman who deserves only the finest.',
       heroBtnA: isAr ? '✦ تسوقي الآن' : '✦ Shop Now',
-      heroBtnB: isAr ? 'استكشفي المجموعات ←' : 'Explore Collections →'
+      heroBtnB: isAr ? 'المجموعات ←' : 'Collections →',
+      srchLabel: isAr ? 'ابحثي عن منتجات' : 'Search Products',
+      cartTitle: isAr ? 'سلة التسوق' : 'Your Cart',
+      subtotalLabel: isAr ? 'المجموع الفرعي' : 'Subtotal',
+      shippingLabel: isAr ? 'الشحن' : 'Shipping',
+      shippingVal: isAr ? 'مجاني' : 'Free',
+      totalLabel: isAr ? 'المجموع' : 'Total',
+      checkoutBtnTxt: isAr ? 'اطلبي عبر واتساب' : 'Order via WhatsApp',
+      cartSecure: isAr ? '🔒 دفع آمن عبر واتساب · توصيل مجاني في لبنان' : '🔒 Secure WhatsApp checkout · Free delivery in Lebanon'
     };
-    Object.keys(map).forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.textContent = map[id];
+    Object.keys(maps).forEach(function (id) {
+      var el = $(id);
+      if (el) el.textContent = maps[id];
     });
 
-    var srchLabel = document.getElementById('srchLabel');
-    if (srchLabel) srchLabel.textContent = isAr ? 'ابحثي عن منتجات' : 'Search Products';
-    if (srchInput) srchInput.placeholder = isAr ? 'اكتبي هنا…' : 'Type something…';
-    var nlEmail = document.getElementById('nlEmail');
-    if (nlEmail) nlEmail.placeholder = isAr ? 'بريدك الإلكتروني…' : 'Your email address…';
+    var nlBtn = document.querySelector('.nl-form .btn-primary');
+    if (nlBtn) nlBtn.textContent = isAr ? 'اشتركي ✦' : 'Subscribe ✦';
+    var srchIn = $('srchInput');
+    if (srchIn) srchIn.placeholder = isAr ? 'ابدئي الكتابة…' : 'Start typing…';
+    var nlIn = $('nlEmail');
+    if (nlIn) nlIn.placeholder = isAr ? 'بريدك الإلكتروني…' : 'Your email address…';
 
-    showToast(isAr ? '🌸 تم تغيير اللغة إلى العربية' : '🌸 Language changed to English');
+    renderProducts(currentFilter);
+    renderCart();
+    toast(isAr ? '🌸 تم تغيير اللغة إلى العربية' : '🌸 Switched to English', '🌸');
   };
 
-  /* ── SCROLL REVEAL ── */
-  var revEls = document.querySelectorAll('.reveal');
+  /* ── REVEAL OBSERVER ── */
+  var revObs;
   if ('IntersectionObserver' in window) {
-    var revObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+    revObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('in');
+          entry.target.classList.add('visible');
           revObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    revEls.forEach(function(el) { revObs.observe(el); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    qsa('.reveal, .reveal-l, .reveal-r').forEach(function (el) { revObs.observe(el); });
   } else {
-    revEls.forEach(function(el) { el.classList.add('in'); });
-  }
-
-  /* ── HERO IMAGE CYCLE ── */
-  var heroImgs = [
-    'https://i.imgur.com/u2XACcD.jpeg',
-    'https://i.imgur.com/tVTdEvJ.jpeg',
-    'https://i.imgur.com/6W1FHNh.jpeg',
-    'https://i.imgur.com/m3qcsx5.jpeg',
-    'https://i.imgur.com/4qyJd5e.jpeg'
-  ];
-  var heroIdx = 0;
-  var heroCardImg = document.getElementById('heroCardImg');
-  if (heroCardImg) {
-    setInterval(function() {
-      heroIdx = (heroIdx + 1) % heroImgs.length;
-      heroCardImg.style.opacity = '0';
-      heroCardImg.style.transform = 'scale(1.06)';
-      setTimeout(function() {
-        heroCardImg.src = heroImgs[heroIdx];
-        heroCardImg.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        heroCardImg.style.opacity = '1';
-        heroCardImg.style.transform = 'scale(1)';
-      }, 500);
-    }, 4000);
-  }
-
-  /* ── HERO PARALLAX ── */
-  if (hasFinePointer) {
-    var heroVis = document.getElementById('heroVisual');
-    if (heroVis) {
-      document.addEventListener('mousemove', function(e) {
-        var x = (e.clientX / window.innerWidth - 0.5) * 14;
-        var y = (e.clientY / window.innerHeight - 0.5) * 7;
-        heroVis.style.transform = 'translate(' + (x * 0.22) + 'px,' + (y * 0.22) + 'px)';
-      }, { passive: true });
-    }
-  }
-
-  /* ── 3D TILT ── */
-  if (hasFinePointer) {
-    document.querySelectorAll('.prod-card, .feat-card').forEach(function(card) {
-      card.addEventListener('mousemove', function(e) {
-        var r = card.getBoundingClientRect();
-        var x = e.clientX - r.left, y = e.clientY - r.top;
-        var cx = r.width / 2, cy = r.height / 2;
-        var rotX = (y - cy) / 14, rotY = (cx - x) / 14;
-        card.style.transition = 'transform 0.08s linear';
-        card.style.transform = 'translateY(-14px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale(1.02)';
-      });
-      card.addEventListener('mouseleave', function() {
-        card.style.transition = 'transform 0.55s cubic-bezier(.16,1,.3,1)';
-        card.style.transform = '';
-      });
-    });
+    qsa('.reveal, .reveal-l, .reveal-r').forEach(function (el) { el.classList.add('visible'); });
   }
 
   /* ── REVIEWS SLIDER ── */
-  var revTrack = document.getElementById('revTrack');
-  var revDots = document.getElementById('revDots');
-  var revPrev = document.getElementById('revPrev');
-  var revNext = document.getElementById('revNext');
+  (function () {
+    var track = $('revTrack');
+    var dotsWrap = $('revDots');
+    var prevBtn = $('revPrev');
+    var nextBtn = $('revNext');
+    if (!track || !dotsWrap) return;
 
-  if (revTrack && revDots) {
-    var revCards = revTrack.querySelectorAll('.rev-card');
-    var revTotal = revCards.length;
-    var revCur = 0;
-    var autoInterval = null;
+    var cards = track.querySelectorAll('.review-card');
+    var total = cards.length;
+    var cur = 0;
+    var autoInt = null;
 
-    function getPerView() {
-      return window.innerWidth < 520 ? 1 : window.innerWidth < 860 ? 2 : 3;
+    function perView() {
+      return window.innerWidth < 560 ? 1 : window.innerWidth < 900 ? 2 : 3;
     }
 
-    var perView = getPerView();
-    var groups = Math.ceil(revTotal / perView);
+    var groups = Math.ceil(total / perView());
 
-    /* build dots */
-    for (var d = 0; d < groups; d++) {
-      (function(idx) {
-        var dot = document.createElement('button');
-        dot.className = 'rev-dot' + (idx === 0 ? ' on' : '');
-        dot.setAttribute('aria-label', 'Go to slide group ' + (idx + 1));
-        dot.addEventListener('click', function() { goRev(idx); });
-        revDots.appendChild(dot);
-      })(d);
+    for (var i = 0; i < groups; i++) {
+      (function (idx) {
+        var d = document.createElement('button');
+        d.className = 'rev-dot' + (idx === 0 ? ' on' : '');
+        d.setAttribute('aria-label', 'Slide ' + (idx + 1));
+        d.addEventListener('click', function () { go(idx); });
+        dotsWrap.appendChild(d);
+      })(i);
     }
 
-    function goRev(idx) {
-      revCur = ((idx % groups) + groups) % groups;
-      var w = revTrack.parentElement ? revTrack.parentElement.offsetWidth : 0;
-      revTrack.style.transform = 'translateX(-' + (revCur * w) + 'px)';
-      revDots.querySelectorAll('.rev-dot').forEach(function(dot, i) {
-        dot.classList.toggle('on', i === revCur);
-      });
+    function go(idx) {
+      var g = Math.ceil(total / perView());
+      cur = ((idx % g) + g) % g;
+      var w = track.parentElement ? track.parentElement.offsetWidth : 0;
+      track.style.transform = 'translateX(-' + (cur * w) + 'px)';
+      dotsWrap.querySelectorAll('.rev-dot').forEach(function (d, i) { d.classList.toggle('on', i === cur); });
     }
 
-    function startAuto() {
-      stopAuto();
-      autoInterval = setInterval(function() { goRev(revCur + 1); }, 5500);
+    function startAuto() { autoInt = setInterval(function () { go(cur + 1); }, 5500); }
+    function stopAuto() { clearInterval(autoInt); }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { stopAuto(); go(cur - 1); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { stopAuto(); go(cur + 1); startAuto(); });
+
+    var outer = track.parentElement;
+    if (outer) {
+      outer.addEventListener('mouseenter', stopAuto);
+      outer.addEventListener('mouseleave', startAuto);
+      /* touch */
+      var tx = 0;
+      outer.addEventListener('touchstart', function (e) { tx = e.changedTouches[0].screenX; }, { passive: true });
+      outer.addEventListener('touchend', function (e) {
+        var dx = tx - e.changedTouches[0].screenX;
+        if (Math.abs(dx) > 44) { stopAuto(); go(dx > 0 ? cur + 1 : cur - 1); startAuto(); }
+      }, { passive: true });
     }
 
-    function stopAuto() {
-      if (autoInterval) { clearInterval(autoInterval); autoInterval = null; }
-    }
-
-    if (revPrev) revPrev.addEventListener('click', function() { stopAuto(); goRev(revCur - 1); startAuto(); });
-    if (revNext) revNext.addEventListener('click', function() { stopAuto(); goRev(revCur + 1); startAuto(); });
-
-    var revOuter = revTrack.parentElement;
-    if (revOuter) {
-      revOuter.addEventListener('mouseenter', stopAuto);
-      revOuter.addEventListener('mouseleave', startAuto);
-    }
-
-    /* touch swipe */
-    var touchStartX = 0;
-    revTrack.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-    revTrack.addEventListener('touchend', function(e) {
-      var diff = touchStartX - e.changedTouches[0].screenX;
-      if (Math.abs(diff) > 50) { stopAuto(); goRev(diff > 0 ? revCur + 1 : revCur - 1); startAuto(); }
-    }, { passive: true });
-
-    window.addEventListener('resize', function() {
-      perView = getPerView();
-      groups = Math.ceil(revTotal / perView);
-      goRev(0);
-    });
-
+    window.addEventListener('resize', function () { go(0); });
     startAuto();
-  }
+  })();
 
-  /* ── SMOOTH ANCHOR LINKS ── */
-  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-      var href = anchor.getAttribute('href');
+  /* ── HERO IMG CYCLE ── */
+  (function () {
+    var imgs = ['https://i.imgur.com/u2XACcD.jpeg','https://i.imgur.com/tVTdEvJ.jpeg','https://i.imgur.com/6W1FHNh.jpeg','https://i.imgur.com/m3qcsx5.jpeg','https://i.imgur.com/4qyJd5e.jpeg'];
+    var idx = 0;
+    var el = $('heroImgEl');
+    if (!el) return;
+    setInterval(function () {
+      idx = (idx + 1) % imgs.length;
+      el.style.opacity = '0'; el.style.transform = 'scale(1.06)';
+      setTimeout(function () {
+        el.src = imgs[idx];
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.opacity = '1'; el.style.transform = 'scale(1)';
+      }, 480);
+    }, 4200);
+  })();
+
+  /* ── SMOOTH ANCHORS ── */
+  qsa('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var href = a.getAttribute('href');
       if (href === '#') return;
       var target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 
-  /* ── KEYBOARD ACCESSIBILITY FOR COLLECTION CARDS ── */
-  document.querySelectorAll('.coll-card[role="button"]').forEach(function(card) {
-    card.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.click();
-      }
-    });
-  });
+  /* ── INIT ── */
+  renderProducts('all');
+  renderCart();
+  updateCartCount();
 
 })();
 </script>
 </body>
 </html>
+```
